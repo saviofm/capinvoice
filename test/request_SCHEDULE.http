@@ -1,0 +1,75 @@
+@server = http://localhost:4004
+@me = Authorization: Basic {{$processEnv USER}}:
+@basic = Authorization: Basic admin:admin
+
+
+### ------------------------------------------------------------------------
+### ------------------------------------------------------------------------
+### -------------------------------CATALOG----------------------------------
+### ------------------------------------------------------------------------
+### ------------------------------------------------------------------------
+
+
+
+### Create ScheduleCreate
+POST  {{server}}/catalog/ScheduleCreate
+Accept: application/json
+Content-Type: application/json
+{{basic}}
+
+{ 
+    "invoice_oppId": "304029808",
+    "mainContact": "Sávio Marques",
+    "mail": "saviohc@gmail.com",
+    "phoneNumber": "11976521534",
+    "desiredDate": "2022-07-26",
+    "scheduleObs": "Avaliações",
+    "scheduleStatus_scheduleStatus": 1,
+    "invitedList": [
+        {
+          "invitedName": "Sávio Félix Marques",
+          "invitedEmail": "saviohc@gmail.com"
+        }
+    ],
+    "demos": [
+        {
+        "demo_ID": "759e90a1-ba07-4afe-b128-902cf9ecf93b"
+        },
+        {
+        "demo_ID": "b0228336-49f0-4e21-8774-f338750760db"
+        },
+        {
+        "demo_ID": "b462f4bc-1319-4f9b-9537-5b44fe373796"
+        },
+        {
+        "demo_ID": "c2f45e91-3138-4b16-8656-4895911f47d2"
+        }
+    ]
+}
+
+### Read ScheduleCreate 
+GET {{server}}/catalog/ScheduleCreate
+Accept: application/json
+Content-Type: application/json
+{{basic}}
+
+### Read ScheduleCreate with expand
+GET {{server}}/catalog/ScheduleCreate?$expand=demos,invitedList,invoice
+Accept: application/json
+Content-Type: application/json
+{{basic}}
+
+
+### Read ScheduleCreate specific 
+GET {{server}}/catalog/ScheduleCreate(b5fe0805-573a-47a3-9918-6f2612e8ebb0)
+
+
+
+### UPDATE ScheduleCreate
+PATCH {{server}}/catalog/ScheduleCreate(b5fe0805-573a-47a3-9918-6f2612e8ebb0)
+Accept: application/json
+Content-Type: application/json
+{{basic}}
+
+{ "scheduleStatus_scheduleStatus": 1 }
+

@@ -1,0 +1,56 @@
+@server = http://localhost:4004
+@me = Authorization: Basic {{$processEnv USER}}:
+@basic = Authorization: Basic admin:admin
+
+
+### ------------------------------------------------------------------------
+### ------------------------------------------------------------------------
+### -------------------------------CATALOG----------------------------------
+### ------------------------------------------------------------------------
+### ------------------------------------------------------------------------
+
+
+
+### Function check dates
+GET {{server}}/v2/catalog/checkDate?desiredDate='2022-07-06'
+Accept: application/json
+Content-Type: application/json
+{{basic}}
+
+
+
+
+
+### Read Schedule
+GET {{server}}/catalog/ScheduleCreate
+Accept: application/json
+Content-Type: application/json
+{{basic}}
+
+
+
+### Read Binary
+GET {{server}}/catalog/DemoCrud(f52bf289-5294-4b45-8d73-1ef4475fb5bd)/demoImage
+
+### Update Demo
+PUT  {{server}}/catalog/DemoCrud(cf31b7df-51a6-47a2-a860-f6f0e1e1960e)
+Accept: application/json
+Content-Type: application/json
+
+{ 
+  "demoImageURL": "/catalog/DemoCrud(f52bf289-5294-4b45-8d73-1ef4475fb5bd)/demoImage",
+}
+
+### Upload Binary
+PUT {{server}}/catalog/DemoCrud(775bad1f-c20a-4d98-8fde-f5772f0445fe)/demoImage
+Content-Type: image/png
+
+< ./digital.png
+
+
+
+### Delete Demo Content
+DELETE {{server}}/catalog/DemoCrud(cf31b7df-51a6-47a2-a860-f6f0e1e1960e)/imageContent
+
+### Delete DEMO
+DELETE {{server}}/catalog/DemoCrud(f52bf289-5294-4b45-8d73-1ef4475fb5bd)

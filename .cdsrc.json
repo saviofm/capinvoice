@@ -1,0 +1,16 @@
+{
+    "auth": {
+        "passport": {
+            "strategy": "mock",
+            "users": {
+                "admin": {
+                    "password": "admin",
+                    "ID": "admin",
+                    "roles": [
+                        "capinvoice_admin"                       
+                    ]                    
+                }
+            }
+        }
+    }    
+}

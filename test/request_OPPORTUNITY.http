@@ -1,0 +1,635 @@
+@server = http://localhost:4004
+@me = Authorization: Basic {{$processEnv USER}}:
+@basic = Authorization: Basic admin:admin
+
+
+### ------------------------------------------------------------------------
+### ------------------------------------------------------------------------
+### -------------------------------CATALOG----------------------------------
+### ------------------------------------------------------------------------
+### ------------------------------------------------------------------------
+
+
+
+
+### ACTION - GET CATALOG OPPORTUNITIES FROM LAC INNOVATION
+POST {{server}}/catalog/updateinvoice
+Accept: application/json
+Content-Type: application/json
+{{basic}}
+
+
+
+
+
+### Oportunity
+GET  {{server}}/catalog/invoice
+Accept: application/json
+Content-Type: application/json
+
+### Oportunity
+POST  {{server}}/catalog/invoice
+Accept: application/json
+Content-Type: application/json
+
+ {
+   "ID": "66c539d2-a1d0-4786-bcb2-3a884c4054b7",
+   "oppId": "304414587",
+   "oppDescription": "SAP: Add users",
+   "dealSize": "9: <20K",
+   "accountOwner": "Flavia Placco",
+   "companyName": "Agrichem do Brasil Ltda",
+   "amount": "1.076.886",
+   "quarter": "2022-Q1",
+   "fcCategory": "Committed",
+   "oppPhase": "B - Negotiate",
+   "invoiceOwner": "Flavia Placco",
+   "salesOffice": "SL-BR MM",
+   "channelPartner": "Avannt Consultoria em",
+   "channelPartnerID": "8946722",
+   "onPremCloud": "OnPrem",
+   "marketBasket": "S/4HANA",
+   "errorFlag": "ok",
+   "dealType": "",
+   "overallFCReliability": "High",
+   "dealScored": "N/A",
+   "fcHygieneIndex": "High",
+   "totalinvoiceCost": "0",
+   "presalesLeadComments": ""
+ }
+
+
+### Oportunity
+POST  {{server}}/catalog/invoice
+Accept: application/json
+Content-Type: application/json
+
+ {
+   "ID": "9e436206-03cb-404a-bfd1-2e384eb370e6",
+   "oppId": "304414936",
+   "oppDescription": "Aquisição Licenciamento SAP Single Sign",
+   "dealSize": "7: 50K-150K",
+   "accountOwner": "Daniele Bernardes",
+   "companyName": "Usinas Siderúrgicas de Minas Gerais S.A.",
+   "amount": "100.270.463",
+   "quarter": "2022-Q2",
+   "fcCategory": "Upside",
+   "oppPhase": "D - Evaluate",
+   "invoiceOwner": "Daniele Bernardes",
+   "salesOffice": "SL-BR Key CI",
+   "channelPartner": "Not assigned",
+   "channelPartnerID": "",
+   "onPremCloud": "OnPrem",
+   "marketBasket": "S/4HANA",
+   "errorFlag": "ok",
+   "dealType": "",
+   "overallFCReliability": "Medium",
+   "dealScored": "Action Required",
+   "fcHygieneIndex": "High",
+   "totalinvoiceCost": "0",
+   "presalesLeadComments": ""
+ }
+
+
+### invoice
+POST  {{server}}/catalog/invoice
+Accept: application/json
+Content-Type: application/json
+
+ {
+   "ID": "5a29ccea-c4d8-4145-8980-c44f8c23b863",
+   "oppId": "304414528",
+   "oppDescription": "MPS e TRP",
+   "dealSize": "5: 250K-500K",
+   "accountOwner": "Paulo Norberto",
+   "companyName": "Citrosuco S/A Agroindústria",
+   "amount": "114.593.385",
+   "quarter": "2022-Q2",
+   "fcCategory": "Upside",
+   "oppPhase": "D - Evaluate",
+   "invoiceOwner": "Agnaldo Ferreira",
+   "salesOffice": "SL-BR Key SI",
+   "channelPartner": "Not assigned",
+   "channelPartnerID": "",
+   "onPremCloud": "OnPrem",
+   "marketBasket": "S/4HANA",
+   "errorFlag": "ok",
+   "dealType": "",
+   "overallFCReliability": "Low",
+   "dealScored": "OK",
+   "fcHygieneIndex": "High",
+   "totalinvoiceCost": "0",
+   "presalesLeadComments": "- 22/03/22 OW: customer requested a MPS demo. We are going to have an assessment prior to the demonstration"
+ }
+
+
+### invoice
+POST  {{server}}/catalog/invoice
+Accept: application/json
+Content-Type: application/json
+
+ {
+   "ID": "4b8bcf82-19c4-4662-adbf-03f982e71047",
+   "oppId": "304408763",
+   "oppDescription": "Implementação SAP S/4HANA - Runtalent",
+   "dealSize": "5: 250K-500K",
+   "accountOwner": "Anderson Leandro",
+   "companyName": "Companhia de Gas do Espirito Santo",
+   "amount": "433.546.036",
+   "quarter": "2022-Q3",
+   "fcCategory": "Upside",
+   "oppPhase": "F - Recognize",
+   "invoiceOwner": "Anderson Leandro",
+   "salesOffice": "SL-BR Key CI",
+   "channelPartner": "Runtalent Tecnologia",
+   "channelPartnerID": "10990677",
+   "onPremCloud": "OnPrem",
+   "marketBasket": "Market Basket",
+   "errorFlag": "ok",
+   "dealType": "",
+   "overallFCReliability": "High",
+   "dealScored": "OK",
+   "fcHygieneIndex": "High",
+   "totalinvoiceCost": "0",
+   "presalesLeadComments": ""
+ }
+
+
+### invoice
+POST  {{server}}/catalog/invoice
+Accept: application/json
+Content-Type: application/json
+
+ {
+   "ID": "886f391e-01c9-4db1-a71e-b50c5a749af3",
+   "oppId": "304402707",
+   "oppDescription": "BTP - Natura &Co Pay",
+   "dealSize": "7: 50K-150K",
+   "accountOwner": "Luiz Menta",
+   "companyName": "Natura Cosmeticos S/A",
+   "amount": "12.986.133",
+   "quarter": "2022-Q2",
+   "fcCategory": "Upside",
+   "oppPhase": "D - Evaluate",
+   "invoiceOwner": "Pamela Terni",
+   "salesOffice": "SL-BR SCP",
+   "channelPartner": "Not assigned",
+   "channelPartnerID": "",
+   "onPremCloud": "Cloud",
+   "marketBasket": "Business Technology Platform",
+   "errorFlag": "ok",
+   "dealType": "",
+   "overallFCReliability": "Medium",
+   "dealScored": "OK",
+   "fcHygieneIndex": "High",
+   "totalinvoiceCost": "121",
+   "presalesLeadComments": ""
+ }
+
+
+### invoice
+POST  {{server}}/catalog/invoice
+Accept: application/json
+Content-Type: application/json
+
+ {
+   "ID": "5798e05e-3ea8-425d-9266-0721d2f613aa",
+   "oppId": "304381793",
+   "oppDescription": "VALE - PPM - Metais Basicos Canada",
+   "dealSize": "6: 150K-250K",
+   "accountOwner": "Amanda Santos",
+   "companyName": "VALE S.A.",
+   "amount": "19.789.346",
+   "quarter": "2022-Q2",
+   "fcCategory": "Upside",
+   "oppPhase": "E - Consider",
+   "invoiceOwner": "Rogerio Faravelli",
+   "salesOffice": "SL-BR SCP",
+   "channelPartner": "Not assigned",
+   "channelPartnerID": "",
+   "onPremCloud": "Cloud",
+   "marketBasket": "S/4HANA",
+   "errorFlag": "ok",
+   "dealType": "",
+   "overallFCReliability": "Medium",
+   "dealScored": "OK",
+   "fcHygieneIndex": "High",
+   "totalinvoiceCost": "323",
+   "presalesLeadComments": ""
+ }
+
+
+### invoice
+POST  {{server}}/catalog/invoice
+Accept: application/json
+Content-Type: application/json
+
+ {
+   "ID": "dded97ec-b885-4449-b3b3-6481455ff730",
+   "oppId": "304029808",
+   "oppDescription": "CX: Contract Reestructure",
+   "dealSize": "5: 250K-500K",
+   "accountOwner": "Luiz Menta",
+   "companyName": "Natura Cosmeticos S/A",
+   "amount": "2.014.741",
+   "quarter": "2022-Q2",
+   "fcCategory": "Upside",
+   "oppPhase": "C - Select",
+   "invoiceOwner": "Pamela Terni",
+   "salesOffice": "SL-BR SCP",
+   "channelPartner": "Not assigned",
+   "channelPartnerID": "",
+   "onPremCloud": "Cloud",
+   "marketBasket": "Customer Experience",
+   "errorFlag": "ok",
+   "dealType": "",
+   "overallFCReliability": "Medium",
+   "dealScored": "OK",
+   "fcHygieneIndex": "High",
+   "totalinvoiceCost": "295",
+   "presalesLeadComments": ""
+ }
+
+
+### Oportunity
+POST  {{server}}/catalog/invoice
+Accept: application/json
+Content-Type: application/json
+
+ {
+   "ID": "db73930e-daba-4e07-a17f-9d24fe8bc1c2",
+   "oppId": "304371207",
+   "oppDescription": "Petrobras - Analytics Coud",
+   "dealSize": "5: 250K-500K",
+   "accountOwner": "Celso Matoso",
+   "companyName": "Petróleo Brasileiro S.A.- Petrobras",
+   "amount": "33.105.418",
+   "quarter": "2022-Q4",
+   "fcCategory": "Upside",
+   "oppPhase": "E - Consider",
+   "invoiceOwner": "Edvaldo Rigon",
+   "salesOffice": "SL-BR SCP",
+   "channelPartner": "Not assigned",
+   "channelPartnerID": "",
+   "onPremCloud": "Cloud",
+   "marketBasket": "Business Technology Platform",
+   "errorFlag": "ok",
+   "dealType": "",
+   "overallFCReliability": "High",
+   "dealScored": "OK",
+   "fcHygieneIndex": "High",
+   "totalinvoiceCost": "172",
+   "presalesLeadComments": ""
+ }
+
+
+### invoice
+POST  {{server}}/catalog/invoice
+Accept: application/json
+Content-Type: application/json
+
+ {
+   "ID": "b7be3322-b29c-4c4a-abda-0d13ec6220d0",
+   "oppId": "304350238",
+   "oppDescription": "S/4 Banking - Natura",
+   "dealSize": "5: 250K-500K",
+   "accountOwner": "Luiz Menta",
+   "companyName": "Natura Cosmeticos S/A",
+   "amount": "51.600.308",
+   "quarter": "2022-Q2",
+   "fcCategory": "Probable",
+   "oppPhase": "D - Evaluate",
+   "invoiceOwner": "Caio Granzotto",
+   "salesOffice": "SL-BR SCP",
+   "channelPartner": "Not assigned",
+   "channelPartnerID": "",
+   "onPremCloud": "Cloud",
+   "marketBasket": "S/4HANA",
+   "errorFlag": "ok",
+   "dealType": "",
+   "overallFCReliability": "Low",
+   "dealScored": "OK",
+   "fcHygieneIndex": "High",
+   "totalinvoiceCost": "4343",
+   "presalesLeadComments": "11.03.22 - CAA Technical Assessment - Rivaroli"
+ }
+
+
+### invoice
+POST  {{server}}/catalog/invoice
+Accept: application/json
+Content-Type: application/json
+
+ {
+   "ID": "0672aa04-2ed7-4aef-bdae-070e7de7b0e3",
+   "oppId": "304362015",
+   "oppDescription": "Petrobras - Upsell DSC 2022",
+   "dealSize": "3: 1M-3M",
+   "accountOwner": "Celso Matoso",
+   "companyName": "Petróleo Brasileiro S.A.- Petrobras",
+   "amount": "213.157.059",
+   "quarter": "2022-Q4",
+   "fcCategory": "Upside",
+   "oppPhase": "D - Evaluate",
+   "invoiceOwner": "Rogerio Faravelli",
+   "salesOffice": "SL-BR SCP",
+   "channelPartner": "Not assigned",
+   "channelPartnerID": "",
+   "onPremCloud": "Cloud",
+   "marketBasket": "S/4HANA",
+   "errorFlag": "ok",
+   "dealType": "",
+   "overallFCReliability": "Medium",
+   "dealScored": "OK",
+   "fcHygieneIndex": "High",
+   "totalinvoiceCost": "19412",
+   "presalesLeadComments": "02/2022 - LFS - Customer has issued Pre-qualification process. We will respond the queries and provide all documents requirested to pre-qualify SAP solutions."
+ }
+
+
+### invoice
+POST  {{server}}/catalog/invoice
+Accept: application/json
+Content-Type: application/json
+
+ {
+   "ID": "3df5d2cd-f728-4326-a9fd-8ae9db5cd2f2",
+   "oppId": "304204593",
+   "oppDescription": "Copacol - SAM & MRS",
+   "dealSize": "5: 250K-500K",
+   "accountOwner": "Daniel Martin",
+   "companyName": "Copacol - Coop. Agroindustrial",
+   "amount": "8.342.011",
+   "quarter": "2022-Q2",
+   "fcCategory": "Upside",
+   "oppPhase": "D - Evaluate",
+   "invoiceOwner": "Agnaldo Ferreira",
+   "salesOffice": "SL-BR Key SI",
+   "channelPartner": "Not assigned",
+   "channelPartnerID": "",
+   "onPremCloud": "OnPrem",
+   "marketBasket": "S/4HANA",
+   "errorFlag": "ok",
+   "dealType": "",
+   "overallFCReliability": "Medium",
+   "dealScored": "OK",
+   "fcHygieneIndex": "Medium",
+   "totalinvoiceCost": "5273",
+   "presalesLeadComments": "- 18/11/21 OW: customer requested a demo of SAM"
+ }
+
+
+### Oportunity
+POST  {{server}}/catalog/invoice
+Accept: application/json
+Content-Type: application/json
+
+ {
+   "ID": "ac397bef-ae76-42ba-937e-8453915b67f6",
+   "oppId": "304353872",
+   "oppDescription": "ATLAS | Add Users (VAR)",
+   "dealSize": "9: <20K",
+   "accountOwner": "Jurgen Mollo",
+   "companyName": "Atlas Indústria De Eletrodomésticos Ltda",
+   "amount": "9.298.819",
+   "quarter": "2022-Q1",
+   "fcCategory": "Upside",
+   "oppPhase": "C - Select",
+   "invoiceOwner": "Jurgen Mollo",
+   "salesOffice": "SL-BR MM",
+   "channelPartner": "Spro Gestao e Inovacao Corporativa Ltda",
+   "channelPartnerID": "50123565",
+   "onPremCloud": "OnPrem",
+   "marketBasket": "S/4HANA",
+   "errorFlag": "ok",
+   "dealType": "",
+   "overallFCReliability": "High",
+   "dealScored": "N/A",
+   "fcHygieneIndex": "High",
+   "totalinvoiceCost": "0",
+   "presalesLeadComments": ""
+ }
+
+
+### Oportunity
+POST  {{server}}/catalog/invoice
+Accept: application/json
+Content-Type: application/json
+
+ {
+   "ID": "655c6a49-a747-450b-9c0d-71b00a0184bf",
+   "oppId": "304374666",
+   "oppDescription": "DSC: EWM",
+   "dealSize": "6: 150K-250K",
+   "accountOwner": "Felipe Frazao",
+   "companyName": "Hortus Comercio de Alimentos S.A.",
+   "amount": "3.320.782",
+   "quarter": "2022-Q2",
+   "fcCategory": "Upside",
+   "oppPhase": "D - Evaluate",
+   "invoiceOwner": "Tarcisio Sousa",
+   "salesOffice": "SL-BR MM",
+   "channelPartner": "Not assigned",
+   "channelPartnerID": "",
+   "onPremCloud": "OnPrem",
+   "marketBasket": "S/4HANA",
+   "errorFlag": "ok",
+   "dealType": "",
+   "overallFCReliability": "High",
+   "dealScored": "OK",
+   "fcHygieneIndex": "High",
+   "totalinvoiceCost": "3904",
+   "presalesLeadComments": "14/02/22 - PM - Solicitado recurso para DEMO EWM."
+ }
+
+
+### Oportunity
+POST  {{server}}/catalog/invoice
+Accept: application/json
+Content-Type: application/json
+
+ {
+   "ID": "f4312e3c-92a8-4b29-9ee1-b4cddf13e6a4",
+   "oppId": "304400983",
+   "oppDescription": "EWM C&C",
+   "dealSize": "9: <20K",
+   "accountOwner": "Camila Nacarato",
+   "companyName": "C&C Casa e Construção Ltda",
+   "amount": "320.975",
+   "quarter": "2022-Q4",
+   "fcCategory": "Upside",
+   "oppPhase": "D - Evaluate",
+   "invoiceOwner": "Arthur Tozin",
+   "salesOffice": "SL-BR Key SI",
+   "channelPartner": "Not assigned",
+   "channelPartnerID": "",
+   "onPremCloud": "Cloud",
+   "marketBasket": "S/4HANA",
+   "errorFlag": "ok",
+   "dealType": "",
+   "overallFCReliability": "High",
+   "dealScored": "N/A",
+   "fcHygieneIndex": "High",
+   "totalinvoiceCost": "0",
+   "presalesLeadComments": ""
+ }
+
+
+### Oportunity
+POST  {{server}}/catalog/invoice
+Accept: application/json
+Content-Type: application/json
+
+ {
+   "ID": "9a6a0635-8640-4c2b-9563-ad399f773ab7",
+   "oppId": "304178595",
+   "oppDescription": "Atento - GRC Bundle",
+   "dealSize": "8: 20K-50K",
+   "accountOwner": "Carlos Martinez",
+   "companyName": "Atento Brasil S.A.",
+   "amount": "21.012",
+   "quarter": "2022-Q3",
+   "fcCategory": "Upside",
+   "oppPhase": "D - Evaluate",
+   "invoiceOwner": "Andre Fazio",
+   "salesOffice": "SL-BR Key CI",
+   "channelPartner": "Not assigned",
+   "channelPartnerID": "",
+   "onPremCloud": "Cloud",
+   "marketBasket": "S/4HANA",
+   "errorFlag": "In Error",
+   "dealType": "",
+   "overallFCReliability": "Medium",
+   "dealScored": "OK",
+   "fcHygieneIndex": "Medium",
+   "totalinvoiceCost": "1157",
+   "presalesLeadComments": "24/10/2021 - CAC - Customer wanted a standard demo because they want to change Lagacy GRC Tool. We presented GRC tools to customer in August, 16th. Presales not demanded since then"
+ }
+
+
+### Oportunity
+POST  {{server}}/catalog/invoice
+Accept: application/json
+Content-Type: application/json
+
+ {
+   "ID": "80273973-c07b-4b7e-acdd-a608237f1a7c",
+   "oppId": "304383346",
+   "oppDescription": "SAP: Data Warehouse",
+   "dealSize": "8: 20K-50K",
+   "accountOwner": "Jose Rocha",
+   "companyName": "Pandurata Alimentos Ltda Bauducco",
+   "amount": "3.046.207",
+   "quarter": "2022-Q2",
+   "fcCategory": "Upside",
+   "oppPhase": "C - Select",
+   "invoiceOwner": "Jose Rocha",
+   "salesOffice": "SL-BR MM",
+   "channelPartner": "Not assigned",
+   "channelPartnerID": "",
+   "onPremCloud": "Cloud",
+   "marketBasket": "Business Technology Platform",
+   "errorFlag": "ok",
+   "dealType": "",
+   "overallFCReliability": "High",
+   "dealScored": "OK",
+   "fcHygieneIndex": "High",
+   "totalinvoiceCost": "3291",
+   "presalesLeadComments": "14 fev 2022: CK - Customer return negotiations on Auditory and news solutions will be added to support customer challenges DWC and AATP will be part of this scope. We will delivery solution details and adoption on customer roadmap."
+ }
+
+
+### Oportunity
+POST  {{server}}/catalog/invoice
+Accept: application/json
+Content-Type: application/json
+
+ {
+   "ID": "5fddd770-6d15-4be8-bcec-949cbc678fd9",
+   "oppId": "304356692",
+   "oppDescription": "DSC: Work manager / Asset Manager",
+   "dealSize": "8: 20K-50K",
+   "accountOwner": "Denyse Santos",
+   "companyName": "Jalles Machado S.A",
+   "amount": "3.194.446",
+   "quarter": "2022-Q4",
+   "fcCategory": "Probable",
+   "oppPhase": "C - Select",
+   "invoiceOwner": "Tarcisio Sousa",
+   "salesOffice": "SL-BR MM",
+   "channelPartner": "Not assigned",
+   "channelPartnerID": "",
+   "onPremCloud": "Cloud",
+   "marketBasket": "S/4HANA",
+   "errorFlag": "ok",
+   "dealType": "",
+   "overallFCReliability": "High",
+   "dealScored": "OK",
+   "fcHygieneIndex": "High",
+   "totalinvoiceCost": "1097000",
+   "presalesLeadComments": "15/02/22 - GBOZ - customer asked for a presentation on SAP Work Manager."
+ }
+
+
+### Oportunity
+POST  {{server}}/catalog/invoice
+Accept: application/json
+Content-Type: application/json
+
+ {
+   "ID": "df06f561-64b3-4dea-9687-e7d91dd8736c",
+   "oppId": "304389112",
+   "oppDescription": "Digital Payment - Generali",
+   "dealSize": "8: 20K-50K",
+   "accountOwner": "Gergi ABBOUD",
+   "companyName": "Generali Brasil Seguros S A",
+   "amount": "3.708.574",
+   "quarter": "2022-Q2",
+   "fcCategory": "Upside",
+   "oppPhase": "D - Evaluate",
+   "invoiceOwner": "Mayte Areas",
+   "salesOffice": "SL-BR Key SI",
+   "channelPartner": "Not assigned",
+   "channelPartnerID": "",
+   "onPremCloud": "Cloud",
+   "marketBasket": "S/4HANA",
+   "errorFlag": "ok",
+   "dealType": "",
+   "overallFCReliability": "High",
+   "dealScored": "OK",
+   "fcHygieneIndex": "High",
+   "totalinvoiceCost": "2247",
+   "presalesLeadComments": ""
+ }
+
+
+### Oportunity
+POST  {{server}}/catalog/invoice
+Accept: application/json
+Content-Type: application/json
+
+ {
+   "ID": "7e398b09-cc58-40cf-a87b-6722866c117a",
+   "oppId": "304340417",
+   "oppDescription": "CX: Sales Cloud",
+   "dealSize": "8: 20K-50K",
+   "accountOwner": "Jurgen Mollo",
+   "companyName": "Dynatech Industrias Quimicas Ltda",
+   "amount": "4.895.503",
+   "quarter": "2022-Q1",
+   "fcCategory": "Probable",
+   "oppPhase": "C - Select",
+   "invoiceOwner": "Caroline Belem",
+   "salesOffice": "SL-BR MM",
+   "channelPartner": "Spektrum Comércio e Consultoria",
+   "channelPartnerID": "10118688",
+   "onPremCloud": "Cloud",
+   "marketBasket": "Customer Experience",
+   "errorFlag": "ok",
+   "dealType": "",
+   "overallFCReliability": "High",
+   "dealScored": "OK",
+   "fcHygieneIndex": "High",
+   "totalinvoiceCost": "306",
+   "presalesLeadComments": ""
+ }

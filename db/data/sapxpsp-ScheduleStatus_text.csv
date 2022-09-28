@@ -1,0 +1,7 @@
+locale;scheduleStatus;txtScheduleStatus
+EN;1;Requested
+EN;2;Scheduled
+EN;3;Reproved
+pt;1;Requisitado
+pt;2;Agendado
+pt;3;Reprovado
