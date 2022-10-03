@@ -5,7 +5,6 @@ using CatalogService as CatalogService from '../cat-service/cat-service';
 service CatalogRest  /*@( requires:'authenticated-user' )*/{
 
     entity Invoice as projection on CatalogService.Invoice;
-    
-    entity InvoiceItems as projection on CatalogService.InvoiceItems;
+
     
 }

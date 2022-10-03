@@ -16,8 +16,8 @@
       "description": "Fatura"
     },
     {
-      "name": "Itens Fatura",
-      "description": "Itens Fatura"
+      "name": "{i18n>InvoiceItems}",
+      "description": "{i18n>InvoiceItems}"
     }
   ],
   "paths": {
@@ -336,7 +336,7 @@
         "summary": "Retrieve a list of invoice items of a fatura.",
         "tags": [
           "Fatura",
-          "Itens Fatura"
+          "{i18n>InvoiceItems}"
         ],
         "parameters": [
           {
@@ -463,10 +463,10 @@
         "summary": "Create a single invoice item of a fatura.",
         "tags": [
           "Fatura",
-          "Itens Fatura"
+          "{i18n>InvoiceItems}"
         ],
         "requestBody": {
-          "description": "Itens Fatura",
+          "description": "{i18n>InvoiceItems}",
           "required": true,
           "content": {
             "application/json": {
@@ -497,7 +497,7 @@
       "get": {
         "summary": "Retrieve a list of invoice items.",
         "tags": [
-          "Itens Fatura"
+          "{i18n>InvoiceItems}"
         ],
         "parameters": [
           {
@@ -623,10 +623,10 @@
       "post": {
         "summary": "Create a single invoice item.",
         "tags": [
-          "Itens Fatura"
+          "{i18n>InvoiceItems}"
         ],
         "requestBody": {
-          "description": "Itens Fatura",
+          "description": "{i18n>InvoiceItems}",
           "required": true,
           "content": {
             "application/json": {
@@ -670,7 +670,7 @@
       "get": {
         "summary": "Retrieve a single invoice item.",
         "tags": [
-          "Itens Fatura"
+          "{i18n>InvoiceItems}"
         ],
         "parameters": [
           {
@@ -733,10 +733,10 @@
       "patch": {
         "summary": "Change a single invoice item.",
         "tags": [
-          "Itens Fatura"
+          "{i18n>InvoiceItems}"
         ],
         "requestBody": {
-          "description": "Itens Fatura",
+          "description": "{i18n>InvoiceItems}",
           "required": true,
           "content": {
             "application/json": {
@@ -758,7 +758,7 @@
       "delete": {
         "summary": "Delete a single invoice item.",
         "tags": [
-          "Itens Fatura"
+          "{i18n>InvoiceItems}"
         ],
         "responses": {
           "204": {
@@ -785,9 +785,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve invoice of a itens  fatura.",
+        "summary": "Retrieve invoice of a {i18n> invoice items}.",
         "tags": [
-          "Itens Fatura",
+          "{i18n>InvoiceItems}",
           "Fatura"
         ],
         "parameters": [
@@ -1133,26 +1133,26 @@
                 "$ref": "#/components/schemas/CatalogService.Invoice"
               }
             ],
-            "description": "Fatura"
+            "description": "{i18n>invoice}"
           },
           "invoice_ID": {
             "type": "string",
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "description": "Fatura"
+            "description": "{i18n>invoice}"
           },
           "itemNumber": {
             "type": "string",
             "nullable": true,
-            "description": "Nr. Item"
+            "description": "{i18n>itemNumber}"
           },
           "itemDescription": {
             "type": "string",
             "nullable": true,
-            "description": "Descrição"
+            "description": "{i18n>itemDescription}"
           }
         },
-        "description": "Itens Fatura"
+        "description": "{i18n>InvoiceItems}"
       },
       "CatalogService.InvoiceItems-create": {
         "title": "InvoiceItems (for create)",
@@ -1164,26 +1164,26 @@
                 "$ref": "#/components/schemas/CatalogService.Invoice-create"
               }
             ],
-            "description": "Fatura"
+            "description": "{i18n>invoice}"
           },
           "invoice_ID": {
             "type": "string",
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "description": "Fatura"
+            "description": "{i18n>invoice}"
           },
           "itemNumber": {
             "type": "string",
             "nullable": true,
-            "description": "Nr. Item"
+            "description": "{i18n>itemNumber}"
           },
           "itemDescription": {
             "type": "string",
             "nullable": true,
-            "description": "Descrição"
+            "description": "{i18n>itemDescription}"
           }
         },
-        "description": "Itens Fatura"
+        "description": "{i18n>InvoiceItems}"
       },
       "CatalogService.InvoiceItems-update": {
         "title": "InvoiceItems (for update)",
@@ -1193,20 +1193,20 @@
             "type": "string",
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "description": "Fatura"
+            "description": "{i18n>invoice}"
           },
           "itemNumber": {
             "type": "string",
             "nullable": true,
-            "description": "Nr. Item"
+            "description": "{i18n>itemNumber}"
           },
           "itemDescription": {
             "type": "string",
             "nullable": true,
-            "description": "Descrição"
+            "description": "{i18n>itemDescription}"
           }
         },
-        "description": "Itens Fatura"
+        "description": "{i18n>InvoiceItems}"
       },
       "count": {
         "anyOf": [
