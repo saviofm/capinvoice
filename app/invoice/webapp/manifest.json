@@ -17,7 +17,7 @@
         },
         "dataSources": {
             "mainService": {
-                "uri": "/catalog-service-draft/",
+                "uri": "catalog-service-draft/",
                 "type": "OData",
                 "settings": {
                     "annotations": [
@@ -46,10 +46,14 @@
                     "action": "DISPLAY",
                     "title": "{{flpTitle}}",
                     "subTitle": "{{flpSubtitle}}",
-                    "icon": ""
+                    "icon": "sap-icon://opportunities"
                 }
             }
         }
+    },
+    "sap.cloud": {
+        "service": "capinvoice",
+        "public": true
     },
     "sap.ui": {
         "technology": "UI5",

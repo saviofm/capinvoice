@@ -1,15 +1,19 @@
 using capinvoice as capinvoice from '../../db/data-model';
 
-service CatalogServiceDraft   /*@( requires:'authenticated-user' )*/ {
+service CatalogServiceDraft @( requires:'authenticated-user' ) {
 
     @odata.draft.enabled
     entity InvoiceDraft
-    /* @(restrict: [ 
+     @(restrict: [ 
             { grant: '*'   , to: 'capinvoice_admin' },
             { grant: 'READ', to: 'authenticated-user' }
-    ])*/
+    ])
         as projection on capinvoice.Invoice;
  
-    entity InvoiceItemsDraft   
+    entity InvoiceItemsDraft 
+     @(restrict: [ 
+            { grant: '*'   , to: 'capinvoice_admin' },
+            { grant: 'READ', to: 'authenticated-user' }
+    ])  
         as projection on capinvoice.InvoiceItems;
 };
