@@ -30,8 +30,8 @@
     "eslint": "^7.32.0"
   },
   "engines": {
-    "node": "16.15.1",
-    "npm": "8.15.1"
+    "node": "16.16.0",
+    "npm": "8.19.2"
   },
   "scripts": {
     "start": "cds run",
