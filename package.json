@@ -25,7 +25,7 @@
     "@sap/eslint-plugin-cds": "2.3.3",
     "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
     "@sap/hdi-deploy": "4.4.1",
-    "@sap/ux-specification": "^1.100.3",
+    "@sap/ux-specification": "^1.102.9",
     "@sap/ux-ui5-tooling": "^1.5.5",
     "@sapui5/ts-types": "^1.92.2",
     "eslint": "^7.32.0"
@@ -37,7 +37,8 @@
   "scripts": {
     "start": "cds run",
     "undeploy": "cf undeploy capinvoice --delete-services --delete-service-keys",
-    "watch-createform": "cds watch --open createform/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-createform": "cds watch --open createform/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-invoice": "cds watch --open invoice/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
@@ -93,6 +94,7 @@
     }
   },
   "sapux": [
+    "app/invoice",
     "app/invoice"
   ]
 }

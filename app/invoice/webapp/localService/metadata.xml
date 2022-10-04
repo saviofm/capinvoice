@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="CatalogServiceDraft" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="InvoiceDraft" EntityType="CatalogServiceDraft.InvoiceDraft">
+                    <NavigationPropertyBinding Path="invoiceItems" Target="InvoiceItemsDraft"/>
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="InvoiceDraft"/>
+                </EntitySet>
+                <EntitySet Name="InvoiceItemsDraft" EntityType="CatalogServiceDraft.InvoiceItemsDraft">
+                    <NavigationPropertyBinding Path="invoice" Target="InvoiceDraft"/>
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="InvoiceItemsDraft"/>
+                </EntitySet>
+            </EntityContainer>
+            <EntityType Name="InvoiceDraft">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="invoiceNumber" Type="Edm.String"/>
+                <Property Name="senderName" Type="Edm.String"/>
+                <Property Name="poNumber" Type="Edm.String"/>
+                <Property Name="grossAmount" Type="Edm.Int32"/>
+                <Property Name="invoiceDate" Type="Edm.Date"/>
+                <Property Name="senderAddress" Type="Edm.String"/>
+                <Property Name="invoiceContent" Type="Edm.Stream"/>
+                <Property Name="invoiceContentType" Type="Edm.String"/>
+                <NavigationProperty Name="invoiceItems" Type="Collection(CatalogServiceDraft.InvoiceItemsDraft)" Partner="invoice">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="CatalogServiceDraft.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="CatalogServiceDraft.InvoiceDraft"/>
+            </EntityType>
+            <EntityType Name="InvoiceItemsDraft">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <NavigationProperty Name="invoice" Type="CatalogServiceDraft.InvoiceDraft" Partner="invoiceItems">
+                    <ReferentialConstraint Property="invoice_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="invoice_ID" Type="Edm.Guid"/>
+                <Property Name="itemNumber" Type="Edm.String"/>
+                <Property Name="itemDescription" Type="Edm.String"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="CatalogServiceDraft.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="CatalogServiceDraft.InvoiceItemsDraft"/>
+            </EntityType>
+            <EntityType Name="DraftAdministrativeData">
+                <Key>
+                    <PropertyRef Name="DraftUUID"/>
+                </Key>
+                <Property Name="DraftUUID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="CreationDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="CreatedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsCreatedByMe" Type="Edm.Boolean"/>
+                <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="LastChangedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="InProcessByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsProcessedByMe" Type="Edm.Boolean"/>
+            </EntityType>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CatalogServiceDraft.InvoiceDraft"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="CatalogServiceDraft.InvoiceDraft"/>
+            </Action>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CatalogServiceDraft.InvoiceItemsDraft"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="CatalogServiceDraft.InvoiceItemsDraft"/>
+            </Action>
+            <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CatalogServiceDraft.InvoiceDraft"/>
+                <ReturnType Type="CatalogServiceDraft.InvoiceDraft"/>
+            </Action>
+            <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CatalogServiceDraft.InvoiceDraft"/>
+                <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+                <ReturnType Type="CatalogServiceDraft.InvoiceDraft"/>
+            </Action>
+            <Annotations Target="CatalogServiceDraft.InvoiceDraft">
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="invoiceNumber"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="senderName"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="poNumber"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="grossAmount"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="invoiceDate"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.PresentationVariant">
+                    <Record Type="UI.PresentationVariantType">
+                        <PropertyValue Property="SortOrder">
+                            <Collection>
+                                <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="invoiceNumber"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>invoiceNumber</PropertyPath>
+                        <PropertyPath>invoiceDate</PropertyPath>
+                        <PropertyPath>poNumber</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="invoiceNumber"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="TypeName" String="{i18n>Invoice}"/>
+                            <PropertyValue Property="TypeNamePlural" String="{i18n>Invoices}"/>
+                                <PropertyValue Property="Description">
+                                    <Record Type="UI.DataField">
+                                        <PropertyValue Property="Value" Path="senderName"/>
+                                    </Record>
+                                </PropertyValue>
+                            </Record>
+                        </Annotation>
+                        <Annotation Term="UI.HeaderFacets">
+                            <Collection>
+                                <Record Type="UI.ReferenceFacet">
+                                    <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Admin"/>
+                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                                </Record>
+                            </Collection>
+                        </Annotation>
+                        <Annotation Term="UI.FieldGroup" Qualifier="GeneralData">
+                            <Record Type="UI.FieldGroupType">
+                                <PropertyValue Property="Data">
+                                    <Collection>
+                                        <Record Type="UI.DataField">
+                                            <PropertyValue Property="Value" Path="invoiceNumber"/>
+                                        </Record>
+                                        <Record Type="UI.DataField">
+                                            <PropertyValue Property="Value" Path="senderName"/>
+                                        </Record>
+                                        <Record Type="UI.DataField">
+                                            <PropertyValue Property="Value" Path="poNumber"/>
+                                        </Record>
+                                        <Record Type="UI.DataField">
+                                            <PropertyValue Property="Value" Path="grossAmount"/>
+                                        </Record>
+                                        <Record Type="UI.DataField">
+                                            <PropertyValue Property="Value" Path="invoiceDate"/>
+                                        </Record>
+                                        <Record Type="UI.DataField">
+                                            <PropertyValue Property="Value" Path="senderAddress"/>
+                                        </Record>
+                                        <Record Type="UI.DataField">
+                                            <PropertyValue Property="Value" Path="senderAddress"/>
+                                        </Record>
+                                    </Collection>
+                                </PropertyValue>
+                            </Record>
+                        </Annotation>
+                        <Annotation Term="UI.FieldGroup" Qualifier="Image">
+                            <Record Type="UI.FieldGroupType">
+                                <PropertyValue Property="Data">
+                                    <Collection>
+                                        <Record Type="UI.DataField">
+                                            <PropertyValue Property="Value" Path="invoiceContent"/>
+                                            <PropertyValue Property="Label" String=""/>
+                                        </Record>
+                                    </Collection>
+                                </PropertyValue>
+                            </Record>
+                        </Annotation>
+                        <Annotation Term="UI.FieldGroup" Qualifier="Admin">
+                            <Record Type="UI.FieldGroupType">
+                                <PropertyValue Property="Data">
+                                    <Collection>
+                                        <Record Type="UI.DataField">
+                                            <PropertyValue Property="Value" Path="createdBy"/>
+                                        </Record>
+                                        <Record Type="UI.DataField">
+                                            <PropertyValue Property="Value" Path="modifiedBy"/>
+                                        </Record>
+                                        <Record Type="UI.DataField">
+                                            <PropertyValue Property="Value" Path="createdAt"/>
+                                        </Record>
+                                        <Record Type="UI.DataField">
+                                            <PropertyValue Property="Value" Path="modifiedAt"/>
+                                        </Record>
+                                    </Collection>
+                                </PropertyValue>
+                            </Record>
+                        </Annotation>
+                        <Annotation Term="UI.Facets">
+                            <Collection>
+                                <Record Type="UI.ReferenceFacet">
+                                    <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Image"/>
+                                    <PropertyValue Property="Label" String="{i18n>Image}"/>
+                                    </Record>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Label" String="{i18n>GeneralData}"/>
+                                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#GeneralData"/>
+                                        </Record>
+                                        <Record Type="UI.ReferenceFacet">
+                                            <PropertyValue Property="Label" String="{i18n>invoiceItems}"/>
+                                                <PropertyValue Property="Target" AnnotationPath="invoiceItems/@UI.LineItem"/>
+                                            </Record>
+                                        </Collection>
+                                    </Annotation>
+                                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                                    <Annotation Term="UI.Identification">
+                                        <Collection>
+                                            <Record Type="UI.DataField">
+                                                <PropertyValue Property="Value" Path="senderName"/>
+                                            </Record>
+                                            <Record Type="UI.DataField">
+                                                <PropertyValue Property="Value" Path="invoiceNumber"/>
+                                            </Record>
+                                        </Collection>
+                                    </Annotation>
+                                    <Annotation Term="Common.SemanticKey">
+                                        <Collection>
+                                            <PropertyPath>senderName</PropertyPath>
+                                            <PropertyPath>invoiceNumber</PropertyPath>
+                                        </Collection>
+                                    </Annotation>
+                                    <Annotation Term="Common.Label" String="{i18n>Invoice}"/>
+                                        <Annotation Term="Core.Description" String="{i18n>Invoice}"/>
+                                        </Annotations>
+                                        <Annotations Target="CatalogServiceDraft.EntityContainer/InvoiceDraft">
+                                            <Annotation Term="UI.PresentationVariant">
+                                                <Record Type="UI.PresentationVariantType">
+                                                    <PropertyValue Property="SortOrder">
+                                                        <Collection>
+                                                            <Record Type="Common.SortOrderType">
+                                                                <PropertyValue Property="Property" PropertyPath="invoiceNumber"/>
+                                                            </Record>
+                                                        </Collection>
+                                                    </PropertyValue>
+                                                </Record>
+                                            </Annotation>
+                                            <Annotation Term="Common.DraftRoot">
+                                                <Record Type="Common.DraftRootType">
+                                                    <PropertyValue Property="ActivationAction" String="CatalogServiceDraft.draftActivate"/>
+                                                    <PropertyValue Property="EditAction" String="CatalogServiceDraft.draftEdit"/>
+                                                    <PropertyValue Property="PreparationAction" String="CatalogServiceDraft.draftPrepare"/>
+                                                </Record>
+                                            </Annotation>
+                                        </Annotations>
+                                        <Annotations Target="CatalogServiceDraft.InvoiceDraft/ID">
+                                            <Annotation Term="Core.Computed" Bool="true"/>
+                                            <Annotation Term="Common.Text" Path="invoiceNumber">
+                                                <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextFirst"/>
+                                            </Annotation>
+                                        </Annotations>
+                                        <Annotations Target="CatalogServiceDraft.InvoiceDraft/createdAt">
+                                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                            <Annotation Term="Core.Immutable" Bool="true"/>
+                                            <Annotation Term="Core.Computed" Bool="true"/>
+                                            <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                                            </Annotations>
+                                            <Annotations Target="CatalogServiceDraft.InvoiceDraft/createdBy">
+                                                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                <Annotation Term="Core.Immutable" Bool="true"/>
+                                                <Annotation Term="Core.Computed" Bool="true"/>
+                                                <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                    <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                                                    </Annotations>
+                                                    <Annotations Target="CatalogServiceDraft.InvoiceDraft/modifiedAt">
+                                                        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                                        <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                                                        </Annotations>
+                                                        <Annotations Target="CatalogServiceDraft.InvoiceDraft/modifiedBy">
+                                                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                            <Annotation Term="Core.Computed" Bool="true"/>
+                                                            <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                                <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                                                </Annotations>
+                                                                <Annotations Target="CatalogServiceDraft.InvoiceDraft/invoiceNumber">
+                                                                    <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                                                                    <Annotation Term="Common.Label" String="{i18n>invoiceNumber}"/>
+                                                                        <Annotation Term="Core.Description" String="{i18n>invoiceNumber}"/>
+                                                                        </Annotations>
+                                                                        <Annotations Target="CatalogServiceDraft.InvoiceDraft/senderName">
+                                                                            <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                                                                            <Annotation Term="Common.Label" String="{i18n>senderName}"/>
+                                                                                <Annotation Term="Core.Description" String="{i18n>senderName}"/>
+                                                                                </Annotations>
+                                                                                <Annotations Target="CatalogServiceDraft.InvoiceDraft/poNumber">
+                                                                                    <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                                                                                    <Annotation Term="Common.Label" String="{i18n>poNumber}"/>
+                                                                                        <Annotation Term="Core.Description" String="{i18n>poNumber}"/>
+                                                                                        </Annotations>
+                                                                                        <Annotations Target="CatalogServiceDraft.InvoiceDraft/grossAmount">
+                                                                                            <Annotation Term="Common.Label" String="{i18n>grossAmount}"/>
+                                                                                                <Annotation Term="Core.Description" String="{i18n>grossAmount}"/>
+                                                                                                </Annotations>
+                                                                                                <Annotations Target="CatalogServiceDraft.InvoiceDraft/invoiceDate">
+                                                                                                    <Annotation Term="Common.Label" String="{i18n>invoiceDate}"/>
+                                                                                                        <Annotation Term="Core.Description" String="{i18n>invoiceDate}"/>
+                                                                                                        </Annotations>
+                                                                                                        <Annotations Target="CatalogServiceDraft.InvoiceDraft/senderAddress">
+                                                                                                            <Annotation Term="Common.Label" String="{i18n>senderAddress}"/>
+                                                                                                                <Annotation Term="Core.Description" String="{i18n>senderAddress}"/>
+                                                                                                                </Annotations>
+                                                                                                                <Annotations Target="CatalogServiceDraft.InvoiceDraft/invoiceContent">
+                                                                                                                    <Annotation Term="Core.MediaType" Path="invoiceContentType"/>
+                                                                                                                    <Annotation Term="Core.Description" String="{i18n>invoiceContent}"/>
+                                                                                                                        <Annotation Term="Common.Label" String="{i18n>invoiceContent}"/>
+                                                                                                                        </Annotations>
+                                                                                                                        <Annotations Target="CatalogServiceDraft.InvoiceDraft/invoiceContentType">
+                                                                                                                            <Annotation Term="Core.IsMediaType" Bool="true"/>
+                                                                                                                            <Annotation Term="Core.Description" String="{i18n>invoiceContentType}"/>
+                                                                                                                                <Annotation Term="Common.Label" String="{i18n>invoiceContentType}"/>
+                                                                                                                                </Annotations>
+                                                                                                                                <Annotations Target="CatalogServiceDraft.InvoiceDraft/invoiceItems">
+                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>invoiceItems}"/>
+                                                                                                                                        <Annotation Term="Core.Description" String="{i18n>invoiceItems}"/>
+                                                                                                                                        </Annotations>
+                                                                                                                                        <Annotations Target="CatalogServiceDraft.InvoiceDraft/IsActiveEntity">
+                                                                                                                                            <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                        </Annotations>
+                                                                                                                                        <Annotations Target="CatalogServiceDraft.InvoiceDraft/HasActiveEntity">
+                                                                                                                                            <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                        </Annotations>
+                                                                                                                                        <Annotations Target="CatalogServiceDraft.InvoiceDraft/HasDraftEntity">
+                                                                                                                                            <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                        </Annotations>
+                                                                                                                                        <Annotations Target="CatalogServiceDraft.InvoiceDraft/DraftAdministrativeData">
+                                                                                                                                            <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                        </Annotations>
+                                                                                                                                        <Annotations Target="CatalogServiceDraft.InvoiceItemsDraft">
+                                                                                                                                            <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                                                                                                                                            <Annotation Term="UI.LineItem">
+                                                                                                                                                <Collection>
+                                                                                                                                                    <Record Type="UI.DataField">
+                                                                                                                                                        <PropertyValue Property="Value" Path="itemNumber"/>
+                                                                                                                                                        <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                                                                                                                                    </Record>
+                                                                                                                                                    <Record Type="UI.DataField">
+                                                                                                                                                        <PropertyValue Property="Value" Path="itemDescription"/>
+                                                                                                                                                        <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                                                                                                                                    </Record>
+                                                                                                                                                </Collection>
+                                                                                                                                            </Annotation>
+                                                                                                                                            <Annotation Term="UI.PresentationVariant">
+                                                                                                                                                <Record Type="UI.PresentationVariantType">
+                                                                                                                                                    <PropertyValue Property="SortOrder">
+                                                                                                                                                        <Collection>
+                                                                                                                                                            <Record Type="Common.SortOrderType">
+                                                                                                                                                                <PropertyValue Property="Property" PropertyPath="itemNumber"/>
+                                                                                                                                                            </Record>
+                                                                                                                                                        </Collection>
+                                                                                                                                                    </PropertyValue>
+                                                                                                                                                </Record>
+                                                                                                                                            </Annotation>
+                                                                                                                                            <Annotation Term="UI.HeaderInfo">
+                                                                                                                                                <Record Type="UI.HeaderInfoType">
+                                                                                                                                                    <PropertyValue Property="Title">
+                                                                                                                                                        <Record Type="UI.DataField">
+                                                                                                                                                            <PropertyValue Property="Value" String="{i18n>InvoiceItems}"/>
+                                                                                                                                                            </Record>
+                                                                                                                                                        </PropertyValue>
+                                                                                                                                                        <PropertyValue Property="TypeName" String="{i18n>Item}"/>
+                                                                                                                                                            <PropertyValue Property="TypeNamePlural" String="{i18n>Items}"/>
+                                                                                                                                                                <PropertyValue Property="Description">
+                                                                                                                                                                    <Record Type="UI.DataField">
+                                                                                                                                                                        <PropertyValue Property="Value" String="{i18n>InvoiceItems}"/>
+                                                                                                                                                                        </Record>
+                                                                                                                                                                    </PropertyValue>
+                                                                                                                                                                </Record>
+                                                                                                                                                            </Annotation>
+                                                                                                                                                            <Annotation Term="UI.FieldGroup" Qualifier="Details">
+                                                                                                                                                                <Record Type="UI.FieldGroupType">
+                                                                                                                                                                    <PropertyValue Property="Data">
+                                                                                                                                                                        <Collection>
+                                                                                                                                                                            <Record Type="UI.DataField">
+                                                                                                                                                                                <PropertyValue Property="Value" Path="itemNumber"/>
+                                                                                                                                                                                <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                                                                                                                                                            </Record>
+                                                                                                                                                                            <Record Type="UI.DataField">
+                                                                                                                                                                                <PropertyValue Property="Value" Path="itemDescription"/>
+                                                                                                                                                                                <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                                                                                                                                                            </Record>
+                                                                                                                                                                        </Collection>
+                                                                                                                                                                    </PropertyValue>
+                                                                                                                                                                </Record>
+                                                                                                                                                            </Annotation>
+                                                                                                                                                            <Annotation Term="UI.Facets">
+                                                                                                                                                                <Collection>
+                                                                                                                                                                    <Record Type="UI.CollectionFacet">
+                                                                                                                                                                        <PropertyValue Property="ID" String="InvoiceDetails"/>
+                                                                                                                                                                        <PropertyValue Property="Label" String="{i18n>Details}"/>
+                                                                                                                                                                            <PropertyValue Property="Facets">
+                                                                                                                                                                                <Collection>
+                                                                                                                                                                                    <Record Type="UI.ReferenceFacet">
+                                                                                                                                                                                        <PropertyValue Property="Label" String="{i18n>Details}"/>
+                                                                                                                                                                                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Details"/>
+                                                                                                                                                                                        </Record>
+                                                                                                                                                                                    </Collection>
+                                                                                                                                                                                </PropertyValue>
+                                                                                                                                                                            </Record>
+                                                                                                                                                                        </Collection>
+                                                                                                                                                                    </Annotation>
+                                                                                                                                                                    <Annotation Term="UI.Identification">
+                                                                                                                                                                        <Collection>
+                                                                                                                                                                            <Record Type="UI.DataField">
+                                                                                                                                                                                <PropertyValue Property="Value" Path="itemNumber"/>
+                                                                                                                                                                            </Record>
+                                                                                                                                                                        </Collection>
+                                                                                                                                                                    </Annotation>
+                                                                                                                                                                    <Annotation Term="Common.SemanticKey">
+                                                                                                                                                                        <Collection>
+                                                                                                                                                                            <PropertyPath>invoice/invoiceNumber</PropertyPath>
+                                                                                                                                                                            <PropertyPath>itemNumber</PropertyPath>
+                                                                                                                                                                        </Collection>
+                                                                                                                                                                    </Annotation>
+                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>InvoiceItems}"/>
+                                                                                                                                                                        <Annotation Term="Core.Description" String="{i18n>InvoiceItems}"/>
+                                                                                                                                                                        </Annotations>
+                                                                                                                                                                        <Annotations Target="CatalogServiceDraft.EntityContainer/InvoiceItemsDraft">
+                                                                                                                                                                            <Annotation Term="UI.PresentationVariant">
+                                                                                                                                                                                <Record Type="UI.PresentationVariantType">
+                                                                                                                                                                                    <PropertyValue Property="SortOrder">
+                                                                                                                                                                                        <Collection>
+                                                                                                                                                                                            <Record Type="Common.SortOrderType">
+                                                                                                                                                                                                <PropertyValue Property="Property" PropertyPath="itemNumber"/>
+                                                                                                                                                                                            </Record>
+                                                                                                                                                                                        </Collection>
+                                                                                                                                                                                    </PropertyValue>
+                                                                                                                                                                                </Record>
+                                                                                                                                                                            </Annotation>
+                                                                                                                                                                            <Annotation Term="Common.DraftNode">
+                                                                                                                                                                                <Record Type="Common.DraftNodeType">
+                                                                                                                                                                                    <PropertyValue Property="PreparationAction" String="CatalogServiceDraft.draftPrepare"/>
+                                                                                                                                                                                </Record>
+                                                                                                                                                                            </Annotation>
+                                                                                                                                                                        </Annotations>
+                                                                                                                                                                        <Annotations Target="CatalogServiceDraft.InvoiceItemsDraft/ID">
+                                                                                                                                                                            <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                                                            <Annotation Term="Core.Description" String="ID"/>
+                                                                                                                                                                            <Annotation Term="Common.Text" Path="itemNumber">
+                                                                                                                                                                                <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                                                                                                                                                                            </Annotation>
+                                                                                                                                                                            <Annotation Term="Common.Label" String="ID"/>
+                                                                                                                                                                        </Annotations>
+                                                                                                                                                                        <Annotations Target="CatalogServiceDraft.InvoiceItemsDraft/createdAt">
+                                                                                                                                                                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                                                                                                                            <Annotation Term="Core.Immutable" Bool="true"/>
+                                                                                                                                                                            <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                                                                                                                                                                            </Annotations>
+                                                                                                                                                                            <Annotations Target="CatalogServiceDraft.InvoiceItemsDraft/createdBy">
+                                                                                                                                                                                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                                                                                                                                <Annotation Term="Core.Immutable" Bool="true"/>
+                                                                                                                                                                                <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                                                                <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                    <Annotations Target="CatalogServiceDraft.InvoiceItemsDraft/modifiedAt">
+                                                                                                                                                                                        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                                                                                                                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                        <Annotations Target="CatalogServiceDraft.InvoiceItemsDraft/modifiedBy">
+                                                                                                                                                                                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                                                                                                                                            <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                                                                            <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                <Annotations Target="CatalogServiceDraft.InvoiceItemsDraft/invoice">
+                                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>invoice}"/>
+                                                                                                                                                                                                        <Annotation Term="Core.Description" String="{i18n>invoice}"/>
+                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                        <Annotations Target="CatalogServiceDraft.InvoiceItemsDraft/invoice_ID">
+                                                                                                                                                                                                            <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                                                                                                                                                                                                            <Annotation Term="Common.Text" Path="invoice/invoiceNumber">
+                                                                                                                                                                                                                <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                                                                                                                                                                                                            </Annotation>
+                                                                                                                                                                                                            <Annotation Term="Common.ValueList">
+                                                                                                                                                                                                                <Record Type="Common.ValueListType">
+                                                                                                                                                                                                                    <PropertyValue Property="CollectionPath" String="Invoice"/>
+                                                                                                                                                                                                                    <PropertyValue Property="SearchSupported" Bool="true"/>
+                                                                                                                                                                                                                    <PropertyValue Property="Parameters">
+                                                                                                                                                                                                                        <Collection>
+                                                                                                                                                                                                                            <Record Type="Common.ValueListParameterInOut">
+                                                                                                                                                                                                                                <PropertyValue Property="LocalDataProperty" PropertyPath="invoice_ID"/>
+                                                                                                                                                                                                                                <PropertyValue Property="ValueListProperty" String="ID"/>
+                                                                                                                                                                                                                            </Record>
+                                                                                                                                                                                                                            <Record Type="Common.ValueListParameterDisplayOnly">
+                                                                                                                                                                                                                                <PropertyValue Property="ValueListProperty" String="invoiceNumber"/>
+                                                                                                                                                                                                                            </Record>
+                                                                                                                                                                                                                            <Record Type="Common.ValueListParameterDisplayOnly">
+                                                                                                                                                                                                                                <PropertyValue Property="ValueListProperty" String="senderName"/>
+                                                                                                                                                                                                                            </Record>
+                                                                                                                                                                                                                        </Collection>
+                                                                                                                                                                                                                    </PropertyValue>
+                                                                                                                                                                                                                </Record>
+                                                                                                                                                                                                            </Annotation>
+                                                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>invoice}"/>
+                                                                                                                                                                                                                <Annotation Term="Core.Description" String="{i18n>invoice}"/>
+                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                <Annotations Target="CatalogServiceDraft.InvoiceItemsDraft/itemNumber">
+                                                                                                                                                                                                                    <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                                                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>itemNumber}"/>
+                                                                                                                                                                                                                        <Annotation Term="Core.Description" String="{i18n>itemNumber}"/>
+                                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                                        <Annotations Target="CatalogServiceDraft.InvoiceItemsDraft/itemDescription">
+                                                                                                                                                                                                                            <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                                                                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>itemDescription}"/>
+                                                                                                                                                                                                                                <Annotation Term="Core.Description" String="{i18n>itemDescription}"/>
+                                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                                <Annotations Target="CatalogServiceDraft.InvoiceItemsDraft/IsActiveEntity">
+                                                                                                                                                                                                                                    <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                                <Annotations Target="CatalogServiceDraft.InvoiceItemsDraft/HasActiveEntity">
+                                                                                                                                                                                                                                    <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                                <Annotations Target="CatalogServiceDraft.InvoiceItemsDraft/HasDraftEntity">
+                                                                                                                                                                                                                                    <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                                <Annotations Target="CatalogServiceDraft.InvoiceItemsDraft/DraftAdministrativeData">
+                                                                                                                                                                                                                                    <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                                <Annotations Target="CatalogServiceDraft.DraftAdministrativeData">
+                                                                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>Draft_DraftAdministrativeData}"/>
+                                                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                                                    <Annotations Target="CatalogServiceDraft.DraftAdministrativeData/DraftUUID">
+                                                                                                                                                                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>Draft_DraftUUID}"/>
+                                                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                                                        <Annotations Target="CatalogServiceDraft.DraftAdministrativeData/CreationDateTime">
+                                                                                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>Draft_CreationDateTime}"/>
+                                                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                                                            <Annotations Target="CatalogServiceDraft.DraftAdministrativeData/CreatedByUser">
+                                                                                                                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>Draft_CreatedByUser}"/>
+                                                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                                                <Annotations Target="CatalogServiceDraft.DraftAdministrativeData/DraftIsCreatedByMe">
+                                                                                                                                                                                                                                                    <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>Draft_DraftIsCreatedByMe}"/>
+                                                                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                                                                    <Annotations Target="CatalogServiceDraft.DraftAdministrativeData/LastChangeDateTime">
+                                                                                                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>Draft_LastChangeDateTime}"/>
+                                                                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                                                                        <Annotations Target="CatalogServiceDraft.DraftAdministrativeData/LastChangedByUser">
+                                                                                                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>Draft_LastChangedByUser}"/>
+                                                                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                                                                            <Annotations Target="CatalogServiceDraft.DraftAdministrativeData/InProcessByUser">
+                                                                                                                                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>Draft_InProcessByUser}"/>
+                                                                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                                                                <Annotations Target="CatalogServiceDraft.DraftAdministrativeData/DraftIsProcessedByMe">
+                                                                                                                                                                                                                                                                    <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>Draft_DraftIsProcessedByMe}"/>
+                                                                                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                                                                                </Schema>
+                                                                                                                                                                                                                                                            </edmx:DataServices>
+                                                                                                                                                                                                                                                        </edmx:Edmx>
