@@ -2,6 +2,7 @@ using capinvoice as capinvoice from '../../db/data-model';
 
 service CatalogServiceDraft   /*@( requires:'authenticated-user' )*/ {
 
+    @odata.draft.enabled
     entity InvoiceDraft
     /* @(restrict: [ 
             { grant: '*'   , to: 'capinvoice_admin' },

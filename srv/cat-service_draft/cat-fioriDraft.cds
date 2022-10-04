@@ -4,7 +4,7 @@ using CatalogServiceDraft from './cat-serviceDraft';
 //------------------------------------------------------//
 //------------------------------------------------------//
 //List Page
-annotate CatalogService.InvoiceDraft with @(
+annotate CatalogServiceDraft.InvoiceDraft with @(
 	UI: {
         LineItem: [
 			{   
@@ -150,7 +150,7 @@ annotate CatalogService.InvoiceDraft with @(
 //------------------- Invoice Items  -------------------//
 //------------------------------------------------------//
 //------------------------------------------------------//
-annotate CatalogService.InvoiceItemsDraft with @( 
+annotate CatalogServiceDraft.InvoiceItemsDraft with @( 
    	UI: {
     	TextArrangement     : #TextOnly,
         LineItem: [           
@@ -170,7 +170,7 @@ annotate CatalogService.InvoiceItemsDraft with @(
             SortOrder : [{Property : itemNumber}]
         }
     },
-/* Object Header
+// Object Header
     UI: { 
         HeaderInfo: {         
             Title: {
@@ -213,5 +213,4 @@ annotate CatalogService.InvoiceItemsDraft with @(
             }
         ]
     }  
-*/
 );

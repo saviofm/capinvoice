@@ -19,18 +19,8 @@
                 "uri": "catalog-service-draft/",
                 "type": "OData",
                 "settings": {
-                    "annotations": [
-                        "annotation"
-                    ],
                     "localUri": "localService/metadata.xml",
                     "odataVersion": "4.0"
-                }
-            },
-            "annotation": {
-                "type": "ODataAnnotation",
-                "uri": "annotations/annotation.xml",
-                "settings": {
-                    "localUri": "annotations/annotation.xml"
                 }
             }
         },
@@ -116,19 +106,19 @@
             "routes": [
                 {
                     "pattern": ":?query:",
-                    "name": "InvoiceList",
-                    "target": "InvoiceList"
+                    "name": "InvoiceDraftList",
+                    "target": "InvoiceDraftList"
                 },
                 {
                     "pattern": "InvoiceDraft({key}):?query:",
-                    "name": "InvoiceObjectPage",
-                    "target": "InvoiceObjectPage"
+                    "name": "InvoiceDraftObjectPage",
+                    "target": "InvoiceDraftObjectPage"
                 }
             ],
             "targets": {
-                "InvoiceList": {
+                "InvoiceDraftList": {
                     "type": "Component",
-                    "id": "InvoiceList",
+                    "id": "InvoiceDraftList",
                     "name": "sap.fe.templates.ListReport",
                     "options": {
                         "settings": {
@@ -137,16 +127,16 @@
                             "navigation": {
                                 "InvoiceDraft": {
                                     "detail": {
-                                        "route": "InvoiceObjectPage"
+                                        "route": "InvoiceDraftObjectPage"
                                     }
                                 }
                             }
                         }
                     }
                 },
-                "InvoiceObjectPage": {
+                "InvoiceDraftObjectPage": {
                     "type": "Component",
-                    "id": "InvoiceObjectPage",
+                    "id": "InvoiceDraftObjectPage",
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
