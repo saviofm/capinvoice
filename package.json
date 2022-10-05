@@ -18,7 +18,7 @@
     "express": "^4",
     "hdb": "0.19.5",
     "npm": "^8.19.2",
-    "passport": "0.6.0"
+    "passport": "0.5.2"
   },
   "devDependencies": {
     "@sap/cds-compiler": "3.3.2",
@@ -78,7 +78,7 @@
           "db",
           "srv"
         ],
-        "kind": "hana-cloud",
+        "kind": "hana",
         "pool": {
           "acquireTimeoutMillis": 600000,
           "min": 0,
@@ -94,7 +94,6 @@
     }
   },
   "sapux": [
-    "app/invoice",
     "app/invoice"
   ]
 }
