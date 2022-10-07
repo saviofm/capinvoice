@@ -8,4 +8,9 @@ service CatalogServiceDraft  {
  
     entity InvoiceItemsDraft 
         as projection on capinvoice.InvoiceItems;
+
+    entity InvoiceTypeDraft
+        as projection on capinvoice.InvoiceType;
+    entity InvoiceStatusDraft
+        as projection on capinvoice.InvoiceStatus; 
 };

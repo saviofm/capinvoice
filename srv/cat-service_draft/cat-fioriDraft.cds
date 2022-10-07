@@ -22,6 +22,11 @@ annotate CatalogServiceDraft.InvoiceDraft with @(
                 Value : poNumber,
                 ![@UI.Importance] : #High
             },
+            {
+                $Type : 'UI.DataField',
+                Value : invoiceType.txtInvoiceType,
+                ![@UI.Importance] : #High
+            },
             {   
                 $Type : 'UI.DataField', 
                 Value : grossAmount,
@@ -31,7 +36,12 @@ annotate CatalogServiceDraft.InvoiceDraft with @(
                 $Type : 'UI.DataField', 
                 Value : invoiceDate,
                 ![@UI.Importance] : #High
-            }
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : invoiceStatus.txtInvoiceStatus,
+                ![@UI.Importance] : #High
+            },
 		],
         PresentationVariant : {
             $Type     : 'UI.PresentationVariantType',
@@ -80,6 +90,12 @@ annotate CatalogServiceDraft.InvoiceDraft with @(
                 },
                 {
                     $Type : 'UI.DataField',
+                    Value: invoiceType_invoiceType,
+                    // ![@Common.FieldControl] : #ReadOnly,
+                    ![@UI.Importance] : #Low
+                },
+                {
+                    $Type : 'UI.DataField',
                     Value: grossAmount
                 },
                 {
@@ -93,7 +109,13 @@ annotate CatalogServiceDraft.InvoiceDraft with @(
                 {
                     $Type : 'UI.DataField',
                     Value: senderAddress
-                },          
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value: invoiceStatus_invoiceStatus,
+                    // ![@Common.FieldControl] : #ReadOnly,
+                    ![@UI.Importance] : #Low
+                }          
 			]                        
         },
         FieldGroup #Image: {

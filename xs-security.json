@@ -5,37 +5,13 @@
     "authorities":["$ACCEPT_GRANTED_AUTHORITIES"],
     "scopes": [ 
       {
-        "name": "$XSAPPNAME.capinvoice_admin",
-        "description": "Cap Invoice admin"
-      },  
-      {
-        "name": "$XSAPPNAME.capinvoice_suser",
-        "description": "Cap Invoice suser"
-      },       
-      {
         "name": "uaa.user",
         "description": "UAA"
       }
       
     ],
     "attributes": [],
-    "role-templates": [      
-      {
-        "name": "capinvoice_admin",
-        "description": "Cap Invoice Administrator",
-        "scope-references": [
-            "$XSAPPNAME.capinvoice_admin"
-        ],
-        "attribute-references": []
-      },  
-      {
-        "name": "capinvoice_suser",
-        "description": "Cap Invoice Super User",
-        "scope-references": [
-            "$XSAPPNAME.capinvoice_suser"
-        ],
-        "attribute-references": []
-      },                           
+    "role-templates": [                        
       {
         "name": "Token_Exchange",
         "description": "UAA",
@@ -45,19 +21,6 @@
       }
     ],
     "role-collections": [
-      {
-        "name": "CAP_Invoice_admin",
-        "description": "Cap Invoice Admin Role Collection",
-        "role-template-references": [
-          "$XSAPPNAME.capinvoice_admin"
-        ]
-      },
-      {
-        "name": "CAP_Invoice_suser",
-        "description": "Cap Invoice Super User Role Collection",
-        "role-template-references": [
-          "$XSAPPNAME.capinvoice_suser"
-        ]
-      }                             
+                          
     ]
 }

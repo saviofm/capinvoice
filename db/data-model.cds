@@ -18,9 +18,11 @@ entity Invoice: cuid, managed {
   invoiceNumber: String;
   senderName: String;
   poNumber: String;
+  invoiceType: Association to one InvoiceType;
   grossAmount: Integer;
   invoiceDate: Date ;
   senderAddress: String;
+  invoiceStatus: Association to one InvoiceStatus;
   invoiceContent:  LargeBinary @Core.MediaType: invoiceContentType;
   invoiceContentType: String @Core.IsMediaType: true;
   invoiceItems: Composition of many InvoiceItems on invoiceItems.invoice = $self;
@@ -70,6 +72,33 @@ annotate Invoice with @(
         description      : '{i18n>poNumber}',
         Common           : {FieldControl : #Mandatory}
     );
+    invoiceType @(
+        title       : '{i18n>invoiceType}',
+        description : '{i18n>invoiceType}',
+        Common      : {           
+          Text      : {
+                $value                 : invoiceType.txtInvoiceType,
+                ![@UI.TextArrangement] : #TextOnly
+            },
+          //ValueListWithFixedValues : false,
+          ValueList                : {
+                CollectionPath : 'InvoiceType',
+                SearchSupported: true,
+                Parameters     : [
+                    {
+                        $Type             : 'Common.ValueListParameterInOut',
+                        LocalDataProperty : 'invoiceType_invoiceType',
+                        ValueListProperty : 'invoiceType'
+                    },
+                    {
+                        $Type             : 'Common.ValueListParameterDisplayOnly',
+                        ValueListProperty : 'txtInvoiceType'
+
+                    }
+                ]
+            }
+        }
+    );
 
     grossAmount @(
         title            : '{i18n>grossAmount}',
@@ -85,6 +114,33 @@ annotate Invoice with @(
         title            : '{i18n>senderAddress}',
         description      : '{i18n>senderAddress}'  
     );
+    invoiceStatus @(
+    title       : '{i18n>invoiceStatus}',
+    description : '{i18n>invoiceStatus}',
+    Common      : {
+          
+          Text      : {
+                $value                 : invoiceStatus.txtInvoiceStatus,
+                ![@UI.TextArrangement] : #TextOnly
+            },
+          //ValueListWithFixedValues : false,
+          ValueList                : {
+              CollectionPath : 'InvoiceStatus',
+              SearchSupported: true,
+              Parameters     : [
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'invoiceStatus_invoiceStatus',
+                    ValueListProperty : 'invoiceStatus'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'txtInvoiceStatus'
+                }
+              ]
+          }
+      }
+  );
     invoiceContent @(
         title            : '{i18n>invoiceContent}',
         description      : '{i18n>invoiceContent}'
@@ -184,3 +240,82 @@ annotate InvoiceItems with @(
 };
 
 
+//----------------- Invoice Status --------------------//
+//------------------------------------------------------//
+//------------------------------------------------------//
+//Entity
+@cds.odata.valuelist
+entity InvoiceStatus {
+    key invoiceStatus : Integer not null;
+        txtInvoiceStatus  : localized String;
+};
+//Annotation     
+annotate InvoiceStatus with @(
+    title              : '{i18n>InvoiceStatus}',
+    description        : txtInvoiceStatus,
+    UI.TextArrangement : #TextOnly,
+    cds.odata.valuelist,
+    Common.SemanticKey : [txtInvoiceStatus],
+    UI.Identification  : [{
+        $Type : 'UI.DataField',
+        Value : txtInvoiceStatus
+    }]
+) {
+    invoiceStatus @(
+        title       : '{i18n>InvoiceStatus}',
+        description : '{i18n>InvoiceStatus}',
+        Common.Text : {
+            $value                 : txtInvoiceStatus,
+            ![@UI.TextArrangement] : #TextOnly
+        }
+    );
+
+    txtInvoiceStatus  @(
+        title       : '{i18n>txtInvoiceStatus}',
+        description : '{i18n>txtInvoiceStatus}',
+        Common      : {
+            FieldControl             : #Mandatory,
+            TextFor                  : invoiceStatus
+        }
+    );
+};
+
+//----------------- Invoice Type --------------------//
+//------------------------------------------------------//
+//------------------------------------------------------//
+//Entity
+@cds.odata.valuelist
+entity InvoiceType {
+    key invoiceType : String not null;
+        txtInvoiceType  : localized String;
+};
+//Annotation     
+annotate InvoiceType with @(
+    title              : '{i18n>InvoiceType}',
+    description        : txtInvoiceType,
+    UI.TextArrangement : #TextOnly,
+    cds.odata.valuelist,
+    Common.SemanticKey : [txtInvoiceType],
+    UI.Identification  : [{
+        $Type : 'UI.DataField',
+        Value : txtInvoiceType
+    }]
+) {
+    invoiceType @(
+        title       : '{i18n>InvoiceType}',
+        description : '{i18n>InvoiceType}',
+        Common.Text : {
+            $value                 : txtInvoiceType,
+            ![@UI.TextArrangement] : #TextOnly
+        }
+    );
+
+    txtInvoiceType  @(
+        title       : '{i18n>txtInvoiceType}',
+        description : '{i18n>txtInvoiceType}',
+        Common      : {
+            FieldControl             : #Mandatory,
+            TextFor                  : invoiceType
+        }
+    );
+};

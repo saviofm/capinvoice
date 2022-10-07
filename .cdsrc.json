@@ -7,7 +7,7 @@
                     "password": "admin",
                     "ID": "admin",
                     "roles": [
-                        "capinvoice_admin"                       
+                       
                     ]                    
                 }
             }

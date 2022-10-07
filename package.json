@@ -6,28 +6,28 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@sap/cds": "6.1.3",
-    "@sap/cds-dk": "^6.1.5",
-    "@sap/cds-odata-v2-adapter-proxy": "1.9.10",
+    "@sap/cds": "5.9.8",
+    "@sap/cds-dk": "4.9.7",
+    "@sap/cds-odata-v2-adapter-proxy": "1.8.21",
     "@sap/textbundle": "4.1.0",
-    "@sap/xsenv": "3.3.2",
+    "@sap/xsenv": "3.3.1",
     "@sap/xssec": "3.2.13",
     "@types/node-fetch": "^2.6.1",
     "cds-swagger-ui-express": "^0.4.0",
     "cors": "^2.8.5",
     "express": "^4",
-    "hdb": "0.19.5",
-    "npm": "^8.19.2",
-    "passport": "0.5.2"
+    "hdb": "0.19.3",
+    "make": "^0.8.1",
+    "passport": "^0.5.2"
   },
   "devDependencies": {
-    "@sap/cds-compiler": "3.3.2",
+    "@sap/cds-compiler": "2.15.4",
     "@sap/eslint-plugin-cds": "2.3.3",
     "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
-    "@sap/hdi-deploy": "4.4.1",
-    "@sap/ux-specification": "1.102.1",
-    "@sap/ux-ui5-tooling": "1.7.5",
-    "@sapui5/ts-types": "^1.96.14",
+    "@sap/hdi-deploy": "4.3.3",
+    "@sap/ux-specification": "^1.100.3",
+    "@sap/ux-ui5-tooling": "^1.5.5",
+    "@sapui5/ts-types": "^1.92.2",
     "eslint": "^7.32.0"
   },
   "engines": {
@@ -37,8 +37,7 @@
   "scripts": {
     "start": "cds run",
     "undeploy": "cf undeploy capinvoice --delete-services --delete-service-keys",
-    "watch-createform": "cds watch --open createform/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-invoice": "cds watch --open invoice/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-createform": "cds watch --open createform/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",

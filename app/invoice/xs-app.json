@@ -1,6 +1,6 @@
 {
   "welcomeFile": "/index.html",
-  "authenticationMethod": "route",
+  "authenticationMethod": "none",
   "logout": {
     "logoutEndpoint": "/do/logout"
   },
@@ -9,7 +9,7 @@
       "source": "^/catalog-service-draft/(.*)$",
       "target": "/catalog-service-draft/$1",
       "destination": "capinvoice",
-      "authenticationType": "xsuaa",
+      "authenticationType": "none",
       "csrfProtection": false
     },
     {

@@ -1,4 +1,4 @@
-locale;scheduleStatus;txtScheduleStatus
+locale;invoiceStatus;txtInvoiceStatus
 EN;1;Requested
 EN;2;Scheduled
 EN;3;Reproved

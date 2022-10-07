@@ -49,7 +49,11 @@ annotate CatalogService.Invoice with @(
         description      : 'Nr. Pedido',
         Common           : {FieldControl : #Mandatory}
     );
-
+    invoiceType @(
+        title            : 'Tp. Invoice',
+        description      : 'Tp. Invoice',
+        Common           : {FieldControl : #Mandatory}
+    );
     grossAmount @(
         title            : 'Montante',
         description      : 'Montante'
@@ -63,6 +67,10 @@ annotate CatalogService.Invoice with @(
     senderAddress @(
         title            : 'End. Remetente',
         description      : 'End. Remetente'  
+    );
+    invoiceStatus@(
+        title            : 'Status',
+        description      : 'Status'  
     );
     invoiceContent @(
         title            : 'Anexo',
