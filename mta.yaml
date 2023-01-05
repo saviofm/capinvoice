@@ -153,6 +153,7 @@ resources:
             HTML5.DynamicDestination: true
             HTML5.ForwardAuthToken: true
             HTML5.Timeout: 300000
+            sap.processautomation.enabled: true
             Name: capinvoice
             ProxyType: Internet
             Type: HTTP

@@ -5,6 +5,14 @@ service CatalogService    {
     entity Invoice
         as projection on capinvoice.Invoice;
 
+    entity InvoiceItems
+        as projection on capinvoice.InvoiceItems;
+    entity InvoiceStatus
+        as projection on capinvoice.InvoiceStatus;
+
+    entity InvoiceType
+        as projection on capinvoice.InvoiceType;
+
 };
 
 annotate CatalogService.Invoice with @(

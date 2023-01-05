@@ -1,7 +1,7 @@
 locale;invoiceStatus;txtInvoiceStatus
 EN;1;Requested
-EN;2;Scheduled
+EN;2;Approved
 EN;3;Reproved
 pt;1;Requisitado
-pt;2;Agendado
+pt;2;Aprovado
 pt;3;Reprovado
