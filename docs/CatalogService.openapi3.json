@@ -1,32 +1,26 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "Service for namespace CatalogServiceDraft",
-    "description": "This service is located at [/catalog-service-draft/](/catalog-service-draft/)",
+    "title": "Service for namespace CatalogService",
+    "description": "This service is located at [/catalog/](/catalog/)",
     "version": ""
   },
   "x-sap-api-type": "ODATAV4",
   "x-odata-version": "4.0",
-  "x-sap-shortText": "Service for namespace CatalogServiceDraft",
+  "x-sap-shortText": "Service for namespace CatalogService",
   "servers": [
     {
-      "url": "/catalog-service-draft"
+      "url": "/catalog"
     }
   ],
   "tags": [
     {
-      "name": "{i18n>Invoice}",
-      "description": "{i18n>Invoice}"
+      "name": "Fatura",
+      "description": "Fatura"
     },
     {
       "name": "{i18n>InvoiceItems}",
       "description": "{i18n>InvoiceItems}"
-    },
-    {
-      "name": "{i18n>InvoiceType}",
-      "description": {
-        "$Path": "txtInvoiceType"
-      }
     },
     {
       "name": "{i18n>InvoiceStatus}",
@@ -35,18 +29,24 @@
       }
     },
     {
-      "name": "InvoiceTypeDraft_texts"
+      "name": "{i18n>InvoiceType}",
+      "description": {
+        "$Path": "txtInvoiceType"
+      }
     },
     {
-      "name": "InvoiceStatusDraft_texts"
+      "name": "InvoiceStatus_texts"
+    },
+    {
+      "name": "InvoiceType_texts"
     }
   ],
   "paths": {
-    "/InvoiceDraft": {
+    "/Invoice": {
       "get": {
-        "summary": "Retrieve a list of invoice draft.",
+        "summary": "Retrieve a list of invoice.",
         "tags": [
-          "{i18n>Invoice}"
+          "Fatura"
         ],
         "parameters": [
           {
@@ -109,13 +109,7 @@
                   "invoiceContent",
                   "invoiceContent desc",
                   "invoiceContentType",
-                  "invoiceContentType desc",
-                  "IsActiveEntity",
-                  "IsActiveEntity desc",
-                  "HasActiveEntity",
-                  "HasActiveEntity desc",
-                  "HasDraftEntity",
-                  "HasDraftEntity desc"
+                  "invoiceContentType desc"
                 ]
               }
             }
@@ -145,10 +139,7 @@
                   "senderAddress",
                   "invoiceStatus_invoiceStatus",
                   "invoiceContent",
-                  "invoiceContentType",
-                  "IsActiveEntity",
-                  "HasActiveEntity",
-                  "HasDraftEntity"
+                  "invoiceContentType"
                 ]
               }
             }
@@ -167,9 +158,7 @@
                   "*",
                   "invoiceType",
                   "invoiceStatus",
-                  "invoiceItems",
-                  "DraftAdministrativeData",
-                  "SiblingEntity"
+                  "invoiceItems"
                 ]
               }
             }
@@ -177,12 +166,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Retrieved invoice draft",
+            "description": "Retrieved invoice",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "title": "Collection of InvoiceDraft",
+                  "title": "Collection of Invoice",
                   "properties": {
                     "@odata.count": {
                       "$ref": "#/components/schemas/count"
@@ -190,7 +179,7 @@
                     "value": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceDraft"
+                        "$ref": "#/components/schemas/CatalogService.Invoice"
                       }
                     }
                   }
@@ -204,28 +193,28 @@
         }
       },
       "post": {
-        "summary": "Create a single invoice draft.",
+        "summary": "Create a single invoice.",
         "tags": [
-          "{i18n>Invoice}"
+          "Fatura"
         ],
         "requestBody": {
-          "description": "{i18n>Invoice}",
+          "description": "Fatura",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceDraft-create"
+                "$ref": "#/components/schemas/CatalogService.Invoice-create"
               }
             }
           }
         },
         "responses": {
           "201": {
-            "description": "Created invoice draft",
+            "description": "Created invoice",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceDraft"
+                  "$ref": "#/components/schemas/CatalogService.Invoice"
                 }
               }
             }
@@ -236,7 +225,7 @@
         }
       }
     },
-    "/InvoiceDraft(ID={ID},IsActiveEntity='{IsActiveEntity}')": {
+    "/Invoice({ID})": {
       "parameters": [
         {
           "description": "key: ID",
@@ -248,22 +237,12 @@
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef"
           }
-        },
-        {
-          "description": "key: IsActiveEntity",
-          "in": "path",
-          "name": "IsActiveEntity",
-          "required": true,
-          "schema": {
-            "type": "boolean",
-            "default": true
-          }
         }
       ],
       "get": {
-        "summary": "Retrieve a single invoice draft.",
+        "summary": "Retrieve a single invoice.",
         "tags": [
-          "{i18n>Invoice}"
+          "Fatura"
         ],
         "parameters": [
           {
@@ -291,10 +270,7 @@
                   "senderAddress",
                   "invoiceStatus_invoiceStatus",
                   "invoiceContent",
-                  "invoiceContentType",
-                  "IsActiveEntity",
-                  "HasActiveEntity",
-                  "HasDraftEntity"
+                  "invoiceContentType"
                 ]
               }
             }
@@ -313,9 +289,7 @@
                   "*",
                   "invoiceType",
                   "invoiceStatus",
-                  "invoiceItems",
-                  "DraftAdministrativeData",
-                  "SiblingEntity"
+                  "invoiceItems"
                 ]
               }
             }
@@ -323,11 +297,11 @@
         ],
         "responses": {
           "200": {
-            "description": "Retrieved invoice draft",
+            "description": "Retrieved invoice",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceDraft"
+                  "$ref": "#/components/schemas/CatalogService.Invoice"
                 }
               }
             }
@@ -338,17 +312,17 @@
         }
       },
       "patch": {
-        "summary": "Change a single invoice draft.",
+        "summary": "Change a single invoice.",
         "tags": [
-          "{i18n>Invoice}"
+          "Fatura"
         ],
         "requestBody": {
-          "description": "{i18n>Invoice}",
+          "description": "Fatura",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceDraft-update"
+                "$ref": "#/components/schemas/CatalogService.Invoice-update"
               }
             }
           }
@@ -363,9 +337,9 @@
         }
       },
       "delete": {
-        "summary": "Delete a single invoice draft.",
+        "summary": "Delete a single invoice.",
         "tags": [
-          "{i18n>Invoice}"
+          "Fatura"
         ],
         "responses": {
           "204": {
@@ -377,192 +351,7 @@
         }
       }
     },
-    "/InvoiceDraft(ID={ID},IsActiveEntity='{IsActiveEntity}')/CatalogServiceDraft.draftPrepare": {
-      "post": {
-        "summary": "Invoke action draftPrepare",
-        "tags": [
-          "{i18n>Invoice}"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceDraft"
-                    }
-                  ],
-                  "nullable": true
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        },
-        "parameters": [
-          {
-            "description": "key: ID",
-            "in": "path",
-            "name": "ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "example": "01234567-89ab-cdef-0123-456789abcdef"
-            }
-          },
-          {
-            "description": "key: IsActiveEntity",
-            "in": "path",
-            "name": "IsActiveEntity",
-            "required": true,
-            "schema": {
-              "type": "boolean",
-              "default": true
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Action parameters",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "SideEffectsQualifier": {
-                    "type": "string",
-                    "nullable": true
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/InvoiceDraft(ID={ID},IsActiveEntity='{IsActiveEntity}')/CatalogServiceDraft.draftActivate": {
-      "post": {
-        "summary": "Invoke action draftActivate",
-        "tags": [
-          "{i18n>Invoice}"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceDraft"
-                    }
-                  ],
-                  "nullable": true
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        },
-        "parameters": [
-          {
-            "description": "key: ID",
-            "in": "path",
-            "name": "ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "example": "01234567-89ab-cdef-0123-456789abcdef"
-            }
-          },
-          {
-            "description": "key: IsActiveEntity",
-            "in": "path",
-            "name": "IsActiveEntity",
-            "required": true,
-            "schema": {
-              "type": "boolean",
-              "default": true
-            }
-          }
-        ]
-      }
-    },
-    "/InvoiceDraft(ID={ID},IsActiveEntity='{IsActiveEntity}')/CatalogServiceDraft.draftEdit": {
-      "post": {
-        "summary": "Invoke action draftEdit",
-        "tags": [
-          "{i18n>Invoice}"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceDraft"
-                    }
-                  ],
-                  "nullable": true
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        },
-        "parameters": [
-          {
-            "description": "key: ID",
-            "in": "path",
-            "name": "ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "example": "01234567-89ab-cdef-0123-456789abcdef"
-            }
-          },
-          {
-            "description": "key: IsActiveEntity",
-            "in": "path",
-            "name": "IsActiveEntity",
-            "required": true,
-            "schema": {
-              "type": "boolean",
-              "default": true
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Action parameters",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "PreserveChanges": {
-                    "type": "boolean",
-                    "nullable": true
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/InvoiceDraft(ID={ID},IsActiveEntity='{IsActiveEntity}')/invoiceType": {
+    "/Invoice({ID})/invoiceType": {
       "parameters": [
         {
           "description": "key: ID",
@@ -574,22 +363,12 @@
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef"
           }
-        },
-        {
-          "description": "key: IsActiveEntity",
-          "in": "path",
-          "name": "IsActiveEntity",
-          "required": true,
-          "schema": {
-            "type": "boolean",
-            "default": true
-          }
         }
       ],
       "get": {
-        "summary": "Retrieve invoice type of a {i18n> invoice}.",
+        "summary": "Retrieve invoice type of a fatura.",
         "tags": [
-          "{i18n>Invoice}",
+          "Fatura",
           "{i18n>InvoiceType}"
         ],
         "parameters": [
@@ -635,7 +414,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceTypeDraft"
+                  "$ref": "#/components/schemas/CatalogService.InvoiceType"
                 }
               }
             }
@@ -646,7 +425,7 @@
         }
       }
     },
-    "/InvoiceDraft(ID={ID},IsActiveEntity='{IsActiveEntity}')/invoiceStatus": {
+    "/Invoice({ID})/invoiceStatus": {
       "parameters": [
         {
           "description": "key: ID",
@@ -658,22 +437,12 @@
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef"
           }
-        },
-        {
-          "description": "key: IsActiveEntity",
-          "in": "path",
-          "name": "IsActiveEntity",
-          "required": true,
-          "schema": {
-            "type": "boolean",
-            "default": true
-          }
         }
       ],
       "get": {
-        "summary": "Retrieve invoice status of a {i18n> invoice}.",
+        "summary": "Retrieve invoice status of a fatura.",
         "tags": [
-          "{i18n>Invoice}",
+          "Fatura",
           "{i18n>InvoiceStatus}"
         ],
         "parameters": [
@@ -719,7 +488,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceStatusDraft"
+                  "$ref": "#/components/schemas/CatalogService.InvoiceStatus"
                 }
               }
             }
@@ -730,7 +499,7 @@
         }
       }
     },
-    "/InvoiceDraft(ID={ID},IsActiveEntity='{IsActiveEntity}')/invoiceItems": {
+    "/Invoice({ID})/invoiceItems": {
       "parameters": [
         {
           "description": "key: ID",
@@ -742,22 +511,12 @@
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef"
           }
-        },
-        {
-          "description": "key: IsActiveEntity",
-          "in": "path",
-          "name": "IsActiveEntity",
-          "required": true,
-          "schema": {
-            "type": "boolean",
-            "default": true
-          }
         }
       ],
       "get": {
-        "summary": "Retrieve a list of invoice items of a {i18n> invoice}.",
+        "summary": "Retrieve a list of invoice items of a fatura.",
         "tags": [
-          "{i18n>Invoice}",
+          "Fatura",
           "{i18n>InvoiceItems}"
         ],
         "parameters": [
@@ -807,13 +566,7 @@
                   "itemNumber",
                   "itemNumber desc",
                   "itemDescription",
-                  "itemDescription desc",
-                  "IsActiveEntity",
-                  "IsActiveEntity desc",
-                  "HasActiveEntity",
-                  "HasActiveEntity desc",
-                  "HasDraftEntity",
-                  "HasDraftEntity desc"
+                  "itemDescription desc"
                 ]
               }
             }
@@ -836,10 +589,7 @@
                   "modifiedBy",
                   "invoice_ID",
                   "itemNumber",
-                  "itemDescription",
-                  "IsActiveEntity",
-                  "HasActiveEntity",
-                  "HasDraftEntity"
+                  "itemDescription"
                 ]
               }
             }
@@ -856,9 +606,7 @@
                 "type": "string",
                 "enum": [
                   "*",
-                  "invoice",
-                  "DraftAdministrativeData",
-                  "SiblingEntity"
+                  "invoice"
                 ]
               }
             }
@@ -871,7 +619,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "title": "Collection of InvoiceItemsDraft",
+                  "title": "Collection of InvoiceItems",
                   "properties": {
                     "@odata.count": {
                       "$ref": "#/components/schemas/count"
@@ -879,7 +627,7 @@
                     "value": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceItemsDraft"
+                        "$ref": "#/components/schemas/CatalogService.InvoiceItems"
                       }
                     }
                   }
@@ -893,9 +641,9 @@
         }
       },
       "post": {
-        "summary": "Create a single invoice item of a {i18n> invoice}.",
+        "summary": "Create a single invoice item of a fatura.",
         "tags": [
-          "{i18n>Invoice}",
+          "Fatura",
           "{i18n>InvoiceItems}"
         ],
         "requestBody": {
@@ -904,7 +652,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceItemsDraft-create"
+                "$ref": "#/components/schemas/CatalogService.InvoiceItems-create"
               }
             }
           }
@@ -915,7 +663,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceItemsDraft"
+                  "$ref": "#/components/schemas/CatalogService.InvoiceItems"
                 }
               }
             }
@@ -926,406 +674,9 @@
         }
       }
     },
-    "/InvoiceDraft(ID={ID},IsActiveEntity='{IsActiveEntity}')/DraftAdministrativeData": {
-      "parameters": [
-        {
-          "description": "key: ID",
-          "in": "path",
-          "name": "ID",
-          "required": true,
-          "schema": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          }
-        },
-        {
-          "description": "key: IsActiveEntity",
-          "in": "path",
-          "name": "IsActiveEntity",
-          "required": true,
-          "schema": {
-            "type": "boolean",
-            "default": true
-          }
-        }
-      ],
+    "/InvoiceItems": {
       "get": {
-        "summary": "Retrieve draft administrative data of a {i18n> invoice}.",
-        "tags": [
-          "{i18n>Invoice}"
-        ],
-        "parameters": [
-          {
-            "name": "$select",
-            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
-            "in": "query",
-            "explode": false,
-            "schema": {
-              "type": "array",
-              "uniqueItems": true,
-              "items": {
-                "type": "string",
-                "enum": [
-                  "DraftUUID",
-                  "CreationDateTime",
-                  "CreatedByUser",
-                  "DraftIsCreatedByMe",
-                  "LastChangeDateTime",
-                  "LastChangedByUser",
-                  "InProcessByUser",
-                  "DraftIsProcessedByMe"
-                ]
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Retrieved draft administrative data",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.DraftAdministrativeData"
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "patch": {
-        "summary": "Change draft administrative data of a {i18n> invoice}.",
-        "tags": [
-          "{i18n>Invoice}"
-        ],
-        "requestBody": {
-          "description": "New property values",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CatalogServiceDraft.DraftAdministrativeData-update"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete draft administrative data of a {i18n> invoice}.",
-        "tags": [
-          "{i18n>Invoice}"
-        ],
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      }
-    },
-    "/InvoiceDraft(ID={ID},IsActiveEntity='{IsActiveEntity}')/SiblingEntity": {
-      "parameters": [
-        {
-          "description": "key: ID",
-          "in": "path",
-          "name": "ID",
-          "required": true,
-          "schema": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          }
-        },
-        {
-          "description": "key: IsActiveEntity",
-          "in": "path",
-          "name": "IsActiveEntity",
-          "required": true,
-          "schema": {
-            "type": "boolean",
-            "default": true
-          }
-        }
-      ],
-      "get": {
-        "summary": "Retrieve sibling entity of a {i18n> invoice}.",
-        "tags": [
-          "{i18n>Invoice}"
-        ],
-        "parameters": [
-          {
-            "name": "$select",
-            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
-            "in": "query",
-            "explode": false,
-            "schema": {
-              "type": "array",
-              "uniqueItems": true,
-              "items": {
-                "type": "string",
-                "enum": [
-                  "ID",
-                  "createdAt",
-                  "createdBy",
-                  "modifiedAt",
-                  "modifiedBy",
-                  "invoiceNumber",
-                  "senderName",
-                  "poNumber",
-                  "invoiceType_invoiceType",
-                  "grossAmount",
-                  "invoiceDate",
-                  "senderAddress",
-                  "invoiceStatus_invoiceStatus",
-                  "invoiceContent",
-                  "invoiceContentType",
-                  "IsActiveEntity",
-                  "HasActiveEntity",
-                  "HasDraftEntity"
-                ]
-              }
-            }
-          },
-          {
-            "name": "$expand",
-            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
-            "in": "query",
-            "explode": false,
-            "schema": {
-              "type": "array",
-              "uniqueItems": true,
-              "items": {
-                "type": "string",
-                "enum": [
-                  "*",
-                  "invoiceType",
-                  "invoiceStatus",
-                  "invoiceItems",
-                  "DraftAdministrativeData",
-                  "SiblingEntity"
-                ]
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Retrieved sibling entity",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceDraft"
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      }
-    },
-    "/InvoiceDraft(ID={ID},IsActiveEntity='{IsActiveEntity}')/SiblingEntity/CatalogServiceDraft.draftPrepare": {
-      "post": {
-        "summary": "Invoke action draftPrepare",
-        "tags": [
-          "{i18n>Invoice}"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceDraft"
-                    }
-                  ],
-                  "nullable": true
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        },
-        "parameters": [
-          {
-            "description": "key: ID",
-            "in": "path",
-            "name": "ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "example": "01234567-89ab-cdef-0123-456789abcdef"
-            }
-          },
-          {
-            "description": "key: IsActiveEntity",
-            "in": "path",
-            "name": "IsActiveEntity",
-            "required": true,
-            "schema": {
-              "type": "boolean",
-              "default": true
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Action parameters",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "SideEffectsQualifier": {
-                    "type": "string",
-                    "nullable": true
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/InvoiceDraft(ID={ID},IsActiveEntity='{IsActiveEntity}')/SiblingEntity/CatalogServiceDraft.draftActivate": {
-      "post": {
-        "summary": "Invoke action draftActivate",
-        "tags": [
-          "{i18n>Invoice}"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceDraft"
-                    }
-                  ],
-                  "nullable": true
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        },
-        "parameters": [
-          {
-            "description": "key: ID",
-            "in": "path",
-            "name": "ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "example": "01234567-89ab-cdef-0123-456789abcdef"
-            }
-          },
-          {
-            "description": "key: IsActiveEntity",
-            "in": "path",
-            "name": "IsActiveEntity",
-            "required": true,
-            "schema": {
-              "type": "boolean",
-              "default": true
-            }
-          }
-        ]
-      }
-    },
-    "/InvoiceDraft(ID={ID},IsActiveEntity='{IsActiveEntity}')/SiblingEntity/CatalogServiceDraft.draftEdit": {
-      "post": {
-        "summary": "Invoke action draftEdit",
-        "tags": [
-          "{i18n>Invoice}"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceDraft"
-                    }
-                  ],
-                  "nullable": true
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        },
-        "parameters": [
-          {
-            "description": "key: ID",
-            "in": "path",
-            "name": "ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "example": "01234567-89ab-cdef-0123-456789abcdef"
-            }
-          },
-          {
-            "description": "key: IsActiveEntity",
-            "in": "path",
-            "name": "IsActiveEntity",
-            "required": true,
-            "schema": {
-              "type": "boolean",
-              "default": true
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Action parameters",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "PreserveChanges": {
-                    "type": "boolean",
-                    "nullable": true
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/InvoiceItemsDraft": {
-      "get": {
-        "summary": "Retrieve a list of invoice items draft.",
+        "summary": "Retrieve a list of invoice items.",
         "tags": [
           "{i18n>InvoiceItems}"
         ],
@@ -1376,13 +727,7 @@
                   "itemNumber",
                   "itemNumber desc",
                   "itemDescription",
-                  "itemDescription desc",
-                  "IsActiveEntity",
-                  "IsActiveEntity desc",
-                  "HasActiveEntity",
-                  "HasActiveEntity desc",
-                  "HasDraftEntity",
-                  "HasDraftEntity desc"
+                  "itemDescription desc"
                 ]
               }
             }
@@ -1405,10 +750,7 @@
                   "modifiedBy",
                   "invoice_ID",
                   "itemNumber",
-                  "itemDescription",
-                  "IsActiveEntity",
-                  "HasActiveEntity",
-                  "HasDraftEntity"
+                  "itemDescription"
                 ]
               }
             }
@@ -1425,9 +767,7 @@
                 "type": "string",
                 "enum": [
                   "*",
-                  "invoice",
-                  "DraftAdministrativeData",
-                  "SiblingEntity"
+                  "invoice"
                 ]
               }
             }
@@ -1435,12 +775,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Retrieved invoice items draft",
+            "description": "Retrieved invoice items",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "title": "Collection of InvoiceItemsDraft",
+                  "title": "Collection of InvoiceItems",
                   "properties": {
                     "@odata.count": {
                       "$ref": "#/components/schemas/count"
@@ -1448,7 +788,7 @@
                     "value": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceItemsDraft"
+                        "$ref": "#/components/schemas/CatalogService.InvoiceItems"
                       }
                     }
                   }
@@ -1462,7 +802,7 @@
         }
       },
       "post": {
-        "summary": "Create a single invoice items draft.",
+        "summary": "Create a single invoice item.",
         "tags": [
           "{i18n>InvoiceItems}"
         ],
@@ -1472,18 +812,18 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceItemsDraft-create"
+                "$ref": "#/components/schemas/CatalogService.InvoiceItems-create"
               }
             }
           }
         },
         "responses": {
           "201": {
-            "description": "Created invoice items draft",
+            "description": "Created invoice item",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceItemsDraft"
+                  "$ref": "#/components/schemas/CatalogService.InvoiceItems"
                 }
               }
             }
@@ -1494,7 +834,7 @@
         }
       }
     },
-    "/InvoiceItemsDraft(ID={ID},IsActiveEntity='{IsActiveEntity}')": {
+    "/InvoiceItems({ID})": {
       "parameters": [
         {
           "description": "ID",
@@ -1506,20 +846,10 @@
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef"
           }
-        },
-        {
-          "description": "key: IsActiveEntity",
-          "in": "path",
-          "name": "IsActiveEntity",
-          "required": true,
-          "schema": {
-            "type": "boolean",
-            "default": true
-          }
         }
       ],
       "get": {
-        "summary": "Retrieve a single invoice items draft.",
+        "summary": "Retrieve a single invoice item.",
         "tags": [
           "{i18n>InvoiceItems}"
         ],
@@ -1542,10 +872,7 @@
                   "modifiedBy",
                   "invoice_ID",
                   "itemNumber",
-                  "itemDescription",
-                  "IsActiveEntity",
-                  "HasActiveEntity",
-                  "HasDraftEntity"
+                  "itemDescription"
                 ]
               }
             }
@@ -1562,9 +889,7 @@
                 "type": "string",
                 "enum": [
                   "*",
-                  "invoice",
-                  "DraftAdministrativeData",
-                  "SiblingEntity"
+                  "invoice"
                 ]
               }
             }
@@ -1572,11 +897,11 @@
         ],
         "responses": {
           "200": {
-            "description": "Retrieved invoice items draft",
+            "description": "Retrieved invoice item",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceItemsDraft"
+                  "$ref": "#/components/schemas/CatalogService.InvoiceItems"
                 }
               }
             }
@@ -1587,7 +912,7 @@
         }
       },
       "patch": {
-        "summary": "Change a single invoice items draft.",
+        "summary": "Change a single invoice item.",
         "tags": [
           "{i18n>InvoiceItems}"
         ],
@@ -1597,7 +922,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceItemsDraft-update"
+                "$ref": "#/components/schemas/CatalogService.InvoiceItems-update"
               }
             }
           }
@@ -1612,7 +937,7 @@
         }
       },
       "delete": {
-        "summary": "Delete a single invoice items draft.",
+        "summary": "Delete a single invoice item.",
         "tags": [
           "{i18n>InvoiceItems}"
         ],
@@ -1626,74 +951,7 @@
         }
       }
     },
-    "/InvoiceItemsDraft(ID={ID},IsActiveEntity='{IsActiveEntity}')/CatalogServiceDraft.draftPrepare": {
-      "post": {
-        "summary": "Invoke action draftPrepare",
-        "tags": [
-          "{i18n>InvoiceItems}"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceItemsDraft"
-                    }
-                  ],
-                  "nullable": true
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        },
-        "parameters": [
-          {
-            "description": "ID",
-            "in": "path",
-            "name": "ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "example": "01234567-89ab-cdef-0123-456789abcdef"
-            }
-          },
-          {
-            "description": "key: IsActiveEntity",
-            "in": "path",
-            "name": "IsActiveEntity",
-            "required": true,
-            "schema": {
-              "type": "boolean",
-              "default": true
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Action parameters",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "SideEffectsQualifier": {
-                    "type": "string",
-                    "nullable": true
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/InvoiceItemsDraft(ID={ID},IsActiveEntity='{IsActiveEntity}')/invoice": {
+    "/InvoiceItems({ID})/invoice": {
       "parameters": [
         {
           "description": "ID",
@@ -1705,23 +963,13 @@
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef"
           }
-        },
-        {
-          "description": "key: IsActiveEntity",
-          "in": "path",
-          "name": "IsActiveEntity",
-          "required": true,
-          "schema": {
-            "type": "boolean",
-            "default": true
-          }
         }
       ],
       "get": {
         "summary": "Retrieve invoice of a {i18n> invoice items}.",
         "tags": [
           "{i18n>InvoiceItems}",
-          "{i18n>Invoice}"
+          "Fatura"
         ],
         "parameters": [
           {
@@ -1749,10 +997,7 @@
                   "senderAddress",
                   "invoiceStatus_invoiceStatus",
                   "invoiceContent",
-                  "invoiceContentType",
-                  "IsActiveEntity",
-                  "HasActiveEntity",
-                  "HasDraftEntity"
+                  "invoiceContentType"
                 ]
               }
             }
@@ -1771,9 +1016,7 @@
                   "*",
                   "invoiceType",
                   "invoiceStatus",
-                  "invoiceItems",
-                  "DraftAdministrativeData",
-                  "SiblingEntity"
+                  "invoiceItems"
                 ]
               }
             }
@@ -1785,7 +1028,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceDraft"
+                  "$ref": "#/components/schemas/CatalogService.Invoice"
                 }
               }
             }
@@ -1796,917 +1039,9 @@
         }
       }
     },
-    "/InvoiceItemsDraft(ID={ID},IsActiveEntity='{IsActiveEntity}')/invoice/CatalogServiceDraft.draftPrepare": {
-      "post": {
-        "summary": "Invoke action draftPrepare",
-        "tags": [
-          "{i18n>InvoiceItems}"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceDraft"
-                    }
-                  ],
-                  "nullable": true
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        },
-        "parameters": [
-          {
-            "description": "ID",
-            "in": "path",
-            "name": "ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "example": "01234567-89ab-cdef-0123-456789abcdef"
-            }
-          },
-          {
-            "description": "key: IsActiveEntity",
-            "in": "path",
-            "name": "IsActiveEntity",
-            "required": true,
-            "schema": {
-              "type": "boolean",
-              "default": true
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Action parameters",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "SideEffectsQualifier": {
-                    "type": "string",
-                    "nullable": true
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/InvoiceItemsDraft(ID={ID},IsActiveEntity='{IsActiveEntity}')/invoice/CatalogServiceDraft.draftActivate": {
-      "post": {
-        "summary": "Invoke action draftActivate",
-        "tags": [
-          "{i18n>InvoiceItems}"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceDraft"
-                    }
-                  ],
-                  "nullable": true
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        },
-        "parameters": [
-          {
-            "description": "ID",
-            "in": "path",
-            "name": "ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "example": "01234567-89ab-cdef-0123-456789abcdef"
-            }
-          },
-          {
-            "description": "key: IsActiveEntity",
-            "in": "path",
-            "name": "IsActiveEntity",
-            "required": true,
-            "schema": {
-              "type": "boolean",
-              "default": true
-            }
-          }
-        ]
-      }
-    },
-    "/InvoiceItemsDraft(ID={ID},IsActiveEntity='{IsActiveEntity}')/invoice/CatalogServiceDraft.draftEdit": {
-      "post": {
-        "summary": "Invoke action draftEdit",
-        "tags": [
-          "{i18n>InvoiceItems}"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceDraft"
-                    }
-                  ],
-                  "nullable": true
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        },
-        "parameters": [
-          {
-            "description": "ID",
-            "in": "path",
-            "name": "ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "example": "01234567-89ab-cdef-0123-456789abcdef"
-            }
-          },
-          {
-            "description": "key: IsActiveEntity",
-            "in": "path",
-            "name": "IsActiveEntity",
-            "required": true,
-            "schema": {
-              "type": "boolean",
-              "default": true
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Action parameters",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "PreserveChanges": {
-                    "type": "boolean",
-                    "nullable": true
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/InvoiceItemsDraft(ID={ID},IsActiveEntity='{IsActiveEntity}')/DraftAdministrativeData": {
-      "parameters": [
-        {
-          "description": "ID",
-          "in": "path",
-          "name": "ID",
-          "required": true,
-          "schema": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          }
-        },
-        {
-          "description": "key: IsActiveEntity",
-          "in": "path",
-          "name": "IsActiveEntity",
-          "required": true,
-          "schema": {
-            "type": "boolean",
-            "default": true
-          }
-        }
-      ],
+    "/InvoiceStatus": {
       "get": {
-        "summary": "Retrieve draft administrative data of a {i18n> invoice items}.",
-        "tags": [
-          "{i18n>InvoiceItems}"
-        ],
-        "parameters": [
-          {
-            "name": "$select",
-            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
-            "in": "query",
-            "explode": false,
-            "schema": {
-              "type": "array",
-              "uniqueItems": true,
-              "items": {
-                "type": "string",
-                "enum": [
-                  "DraftUUID",
-                  "CreationDateTime",
-                  "CreatedByUser",
-                  "DraftIsCreatedByMe",
-                  "LastChangeDateTime",
-                  "LastChangedByUser",
-                  "InProcessByUser",
-                  "DraftIsProcessedByMe"
-                ]
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Retrieved draft administrative data",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.DraftAdministrativeData"
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "patch": {
-        "summary": "Change draft administrative data of a {i18n> invoice items}.",
-        "tags": [
-          "{i18n>InvoiceItems}"
-        ],
-        "requestBody": {
-          "description": "New property values",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CatalogServiceDraft.DraftAdministrativeData-update"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete draft administrative data of a {i18n> invoice items}.",
-        "tags": [
-          "{i18n>InvoiceItems}"
-        ],
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      }
-    },
-    "/InvoiceItemsDraft(ID={ID},IsActiveEntity='{IsActiveEntity}')/SiblingEntity": {
-      "parameters": [
-        {
-          "description": "ID",
-          "in": "path",
-          "name": "ID",
-          "required": true,
-          "schema": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          }
-        },
-        {
-          "description": "key: IsActiveEntity",
-          "in": "path",
-          "name": "IsActiveEntity",
-          "required": true,
-          "schema": {
-            "type": "boolean",
-            "default": true
-          }
-        }
-      ],
-      "get": {
-        "summary": "Retrieve sibling entity of a {i18n> invoice items}.",
-        "tags": [
-          "{i18n>InvoiceItems}"
-        ],
-        "parameters": [
-          {
-            "name": "$select",
-            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
-            "in": "query",
-            "explode": false,
-            "schema": {
-              "type": "array",
-              "uniqueItems": true,
-              "items": {
-                "type": "string",
-                "enum": [
-                  "ID",
-                  "createdAt",
-                  "createdBy",
-                  "modifiedAt",
-                  "modifiedBy",
-                  "invoice_ID",
-                  "itemNumber",
-                  "itemDescription",
-                  "IsActiveEntity",
-                  "HasActiveEntity",
-                  "HasDraftEntity"
-                ]
-              }
-            }
-          },
-          {
-            "name": "$expand",
-            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
-            "in": "query",
-            "explode": false,
-            "schema": {
-              "type": "array",
-              "uniqueItems": true,
-              "items": {
-                "type": "string",
-                "enum": [
-                  "*",
-                  "invoice",
-                  "DraftAdministrativeData",
-                  "SiblingEntity"
-                ]
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Retrieved sibling entity",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceItemsDraft"
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      }
-    },
-    "/InvoiceItemsDraft(ID={ID},IsActiveEntity='{IsActiveEntity}')/SiblingEntity/CatalogServiceDraft.draftPrepare": {
-      "post": {
-        "summary": "Invoke action draftPrepare",
-        "tags": [
-          "{i18n>InvoiceItems}"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceItemsDraft"
-                    }
-                  ],
-                  "nullable": true
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        },
-        "parameters": [
-          {
-            "description": "ID",
-            "in": "path",
-            "name": "ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "example": "01234567-89ab-cdef-0123-456789abcdef"
-            }
-          },
-          {
-            "description": "key: IsActiveEntity",
-            "in": "path",
-            "name": "IsActiveEntity",
-            "required": true,
-            "schema": {
-              "type": "boolean",
-              "default": true
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Action parameters",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "SideEffectsQualifier": {
-                    "type": "string",
-                    "nullable": true
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/InvoiceTypeDraft": {
-      "get": {
-        "summary": "Retrieve a list of invoice type draft.",
-        "tags": [
-          "{i18n>InvoiceType}"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/top"
-          },
-          {
-            "$ref": "#/components/parameters/skip"
-          },
-          {
-            "$ref": "#/components/parameters/search"
-          },
-          {
-            "name": "$filter",
-            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "$ref": "#/components/parameters/count"
-          },
-          {
-            "name": "$orderby",
-            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
-            "in": "query",
-            "explode": false,
-            "schema": {
-              "type": "array",
-              "uniqueItems": true,
-              "items": {
-                "type": "string",
-                "enum": [
-                  "invoiceType",
-                  "invoiceType desc",
-                  "txtInvoiceType",
-                  "txtInvoiceType desc"
-                ]
-              }
-            }
-          },
-          {
-            "name": "$select",
-            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
-            "in": "query",
-            "explode": false,
-            "schema": {
-              "type": "array",
-              "uniqueItems": true,
-              "items": {
-                "type": "string",
-                "enum": [
-                  "invoiceType",
-                  "txtInvoiceType"
-                ]
-              }
-            }
-          },
-          {
-            "name": "$expand",
-            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
-            "in": "query",
-            "explode": false,
-            "schema": {
-              "type": "array",
-              "uniqueItems": true,
-              "items": {
-                "type": "string",
-                "enum": [
-                  "*",
-                  "texts",
-                  "localized"
-                ]
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Retrieved invoice type draft",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "title": "Collection of InvoiceTypeDraft",
-                  "properties": {
-                    "@odata.count": {
-                      "$ref": "#/components/schemas/count"
-                    },
-                    "value": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceTypeDraft"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a single invoice type draft.",
-        "tags": [
-          "{i18n>InvoiceType}"
-        ],
-        "requestBody": {
-          "description": {
-            "$Path": "txtInvoiceType"
-          },
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceTypeDraft-create"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created invoice type draft",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceTypeDraft"
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      }
-    },
-    "/InvoiceTypeDraft('{invoiceType}')": {
-      "parameters": [
-        {
-          "description": "{i18n>InvoiceType}",
-          "in": "path",
-          "name": "invoiceType",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "get": {
-        "summary": "Retrieve a single invoice type draft.",
-        "tags": [
-          "{i18n>InvoiceType}"
-        ],
-        "parameters": [
-          {
-            "name": "$select",
-            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
-            "in": "query",
-            "explode": false,
-            "schema": {
-              "type": "array",
-              "uniqueItems": true,
-              "items": {
-                "type": "string",
-                "enum": [
-                  "invoiceType",
-                  "txtInvoiceType"
-                ]
-              }
-            }
-          },
-          {
-            "name": "$expand",
-            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
-            "in": "query",
-            "explode": false,
-            "schema": {
-              "type": "array",
-              "uniqueItems": true,
-              "items": {
-                "type": "string",
-                "enum": [
-                  "*",
-                  "texts",
-                  "localized"
-                ]
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Retrieved invoice type draft",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceTypeDraft"
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "patch": {
-        "summary": "Change a single invoice type draft.",
-        "tags": [
-          "{i18n>InvoiceType}"
-        ],
-        "requestBody": {
-          "description": {
-            "$Path": "txtInvoiceType"
-          },
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceTypeDraft-update"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete a single invoice type draft.",
-        "tags": [
-          "{i18n>InvoiceType}"
-        ],
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      }
-    },
-    "/InvoiceTypeDraft('{invoiceType}')/texts": {
-      "parameters": [
-        {
-          "description": "{i18n>InvoiceType}",
-          "in": "path",
-          "name": "invoiceType",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "get": {
-        "summary": "Retrieve a list of texts of a {i18n> invoice type}.",
-        "tags": [
-          "{i18n>InvoiceType}",
-          "InvoiceTypeDraft_texts"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/top"
-          },
-          {
-            "$ref": "#/components/parameters/skip"
-          },
-          {
-            "$ref": "#/components/parameters/search"
-          },
-          {
-            "name": "$filter",
-            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "$ref": "#/components/parameters/count"
-          },
-          {
-            "name": "$orderby",
-            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
-            "in": "query",
-            "explode": false,
-            "schema": {
-              "type": "array",
-              "uniqueItems": true,
-              "items": {
-                "type": "string",
-                "enum": [
-                  "locale",
-                  "locale desc",
-                  "invoiceType",
-                  "invoiceType desc",
-                  "txtInvoiceType",
-                  "txtInvoiceType desc"
-                ]
-              }
-            }
-          },
-          {
-            "name": "$select",
-            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
-            "in": "query",
-            "explode": false,
-            "schema": {
-              "type": "array",
-              "uniqueItems": true,
-              "items": {
-                "type": "string",
-                "enum": [
-                  "locale",
-                  "invoiceType",
-                  "txtInvoiceType"
-                ]
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Retrieved texts",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "title": "Collection of InvoiceTypeDraft_texts",
-                  "properties": {
-                    "@odata.count": {
-                      "$ref": "#/components/schemas/count"
-                    },
-                    "value": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceTypeDraft_texts"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a single text of a {i18n> invoice type}.",
-        "tags": [
-          "{i18n>InvoiceType}",
-          "InvoiceTypeDraft_texts"
-        ],
-        "requestBody": {
-          "description": "New text",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceTypeDraft_texts-create"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created text",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceTypeDraft_texts"
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      }
-    },
-    "/InvoiceTypeDraft('{invoiceType}')/localized": {
-      "parameters": [
-        {
-          "description": "{i18n>InvoiceType}",
-          "in": "path",
-          "name": "invoiceType",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "get": {
-        "summary": "Retrieve localized of a {i18n> invoice type}.",
-        "tags": [
-          "{i18n>InvoiceType}",
-          "InvoiceTypeDraft_texts"
-        ],
-        "parameters": [
-          {
-            "name": "$select",
-            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
-            "in": "query",
-            "explode": false,
-            "schema": {
-              "type": "array",
-              "uniqueItems": true,
-              "items": {
-                "type": "string",
-                "enum": [
-                  "locale",
-                  "invoiceType",
-                  "txtInvoiceType"
-                ]
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Retrieved localized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceTypeDraft_texts"
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      }
-    },
-    "/InvoiceStatusDraft": {
-      "get": {
-        "summary": "Retrieve a list of invoice status draft.",
+        "summary": "Retrieve a list of invoice status.",
         "tags": [
           "{i18n>InvoiceStatus}"
         ],
@@ -2788,12 +1123,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Retrieved invoice status draft",
+            "description": "Retrieved invoice status",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "title": "Collection of InvoiceStatusDraft",
+                  "title": "Collection of InvoiceStatus",
                   "properties": {
                     "@odata.count": {
                       "$ref": "#/components/schemas/count"
@@ -2801,7 +1136,7 @@
                     "value": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceStatusDraft"
+                        "$ref": "#/components/schemas/CatalogService.InvoiceStatus"
                       }
                     }
                   }
@@ -2815,7 +1150,7 @@
         }
       },
       "post": {
-        "summary": "Create a single invoice status draft.",
+        "summary": "Create a single invoice status.",
         "tags": [
           "{i18n>InvoiceStatus}"
         ],
@@ -2827,18 +1162,18 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceStatusDraft-create"
+                "$ref": "#/components/schemas/CatalogService.InvoiceStatus-create"
               }
             }
           }
         },
         "responses": {
           "201": {
-            "description": "Created invoice status draft",
+            "description": "Created invoice status",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceStatusDraft"
+                  "$ref": "#/components/schemas/CatalogService.InvoiceStatus"
                 }
               }
             }
@@ -2849,7 +1184,7 @@
         }
       }
     },
-    "/InvoiceStatusDraft({invoiceStatus})": {
+    "/InvoiceStatus({invoiceStatus})": {
       "parameters": [
         {
           "description": "{i18n>InvoiceStatus}",
@@ -2863,7 +1198,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single invoice status draft.",
+        "summary": "Retrieve a single invoice status.",
         "tags": [
           "{i18n>InvoiceStatus}"
         ],
@@ -2906,11 +1241,11 @@
         ],
         "responses": {
           "200": {
-            "description": "Retrieved invoice status draft",
+            "description": "Retrieved invoice status",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceStatusDraft"
+                  "$ref": "#/components/schemas/CatalogService.InvoiceStatus"
                 }
               }
             }
@@ -2921,7 +1256,7 @@
         }
       },
       "patch": {
-        "summary": "Change a single invoice status draft.",
+        "summary": "Change a single invoice status.",
         "tags": [
           "{i18n>InvoiceStatus}"
         ],
@@ -2933,7 +1268,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceStatusDraft-update"
+                "$ref": "#/components/schemas/CatalogService.InvoiceStatus-update"
               }
             }
           }
@@ -2948,7 +1283,7 @@
         }
       },
       "delete": {
-        "summary": "Delete a single invoice status draft.",
+        "summary": "Delete a single invoice status.",
         "tags": [
           "{i18n>InvoiceStatus}"
         ],
@@ -2962,7 +1297,7 @@
         }
       }
     },
-    "/InvoiceStatusDraft({invoiceStatus})/texts": {
+    "/InvoiceStatus({invoiceStatus})/texts": {
       "parameters": [
         {
           "description": "{i18n>InvoiceStatus}",
@@ -2979,7 +1314,7 @@
         "summary": "Retrieve a list of texts of a {i18n> invoice status}.",
         "tags": [
           "{i18n>InvoiceStatus}",
-          "InvoiceStatusDraft_texts"
+          "InvoiceStatus_texts"
         ],
         "parameters": [
           {
@@ -3049,7 +1384,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "title": "Collection of InvoiceStatusDraft_texts",
+                  "title": "Collection of InvoiceStatus_texts",
                   "properties": {
                     "@odata.count": {
                       "$ref": "#/components/schemas/count"
@@ -3057,7 +1392,7 @@
                     "value": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceStatusDraft_texts"
+                        "$ref": "#/components/schemas/CatalogService.InvoiceStatus_texts"
                       }
                     }
                   }
@@ -3074,7 +1409,7 @@
         "summary": "Create a single text of a {i18n> invoice status}.",
         "tags": [
           "{i18n>InvoiceStatus}",
-          "InvoiceStatusDraft_texts"
+          "InvoiceStatus_texts"
         ],
         "requestBody": {
           "description": "New text",
@@ -3082,7 +1417,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceStatusDraft_texts-create"
+                "$ref": "#/components/schemas/CatalogService.InvoiceStatus_texts-create"
               }
             }
           }
@@ -3093,7 +1428,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceStatusDraft_texts"
+                  "$ref": "#/components/schemas/CatalogService.InvoiceStatus_texts"
                 }
               }
             }
@@ -3104,7 +1439,7 @@
         }
       }
     },
-    "/InvoiceStatusDraft({invoiceStatus})/localized": {
+    "/InvoiceStatus({invoiceStatus})/localized": {
       "parameters": [
         {
           "description": "{i18n>InvoiceStatus}",
@@ -3121,7 +1456,7 @@
         "summary": "Retrieve localized of a {i18n> invoice status}.",
         "tags": [
           "{i18n>InvoiceStatus}",
-          "InvoiceStatusDraft_texts"
+          "InvoiceStatus_texts"
         ],
         "parameters": [
           {
@@ -3149,7 +1484,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceStatusDraft_texts"
+                  "$ref": "#/components/schemas/CatalogService.InvoiceStatus_texts"
                 }
               }
             }
@@ -3160,11 +1495,280 @@
         }
       }
     },
-    "/InvoiceTypeDraft_texts": {
+    "/InvoiceType": {
       "get": {
-        "summary": "Retrieve a list of invoice type draft_texts.",
+        "summary": "Retrieve a list of invoice type.",
         "tags": [
-          "InvoiceTypeDraft_texts"
+          "{i18n>InvoiceType}"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "invoiceType",
+                  "invoiceType desc",
+                  "txtInvoiceType",
+                  "txtInvoiceType desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "invoiceType",
+                  "txtInvoiceType"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "texts",
+                  "localized"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved invoice type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Collection of InvoiceType",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/CatalogService.InvoiceType"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a single invoice type.",
+        "tags": [
+          "{i18n>InvoiceType}"
+        ],
+        "requestBody": {
+          "description": {
+            "$Path": "txtInvoiceType"
+          },
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.InvoiceType-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created invoice type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.InvoiceType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/InvoiceType('{invoiceType}')": {
+      "parameters": [
+        {
+          "description": "{i18n>InvoiceType}",
+          "in": "path",
+          "name": "invoiceType",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve a single invoice type.",
+        "tags": [
+          "{i18n>InvoiceType}"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "invoiceType",
+                  "txtInvoiceType"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "texts",
+                  "localized"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved invoice type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.InvoiceType"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Change a single invoice type.",
+        "tags": [
+          "{i18n>InvoiceType}"
+        ],
+        "requestBody": {
+          "description": {
+            "$Path": "txtInvoiceType"
+          },
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.InvoiceType-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a single invoice type.",
+        "tags": [
+          "{i18n>InvoiceType}"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/InvoiceType('{invoiceType}')/texts": {
+      "parameters": [
+        {
+          "description": "{i18n>InvoiceType}",
+          "in": "path",
+          "name": "invoiceType",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve a list of texts of a {i18n> invoice type}.",
+        "tags": [
+          "{i18n>InvoiceType}",
+          "InvoiceType_texts"
         ],
         "parameters": [
           {
@@ -3229,12 +1833,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Retrieved invoice type draft_texts",
+            "description": "Retrieved texts",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "title": "Collection of InvoiceTypeDraft_texts",
+                  "title": "Collection of InvoiceType_texts",
                   "properties": {
                     "@odata.count": {
                       "$ref": "#/components/schemas/count"
@@ -3242,7 +1846,7 @@
                     "value": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceTypeDraft_texts"
+                        "$ref": "#/components/schemas/CatalogService.InvoiceType_texts"
                       }
                     }
                   }
@@ -3256,28 +1860,29 @@
         }
       },
       "post": {
-        "summary": "Create a single invoice type draft_text.",
+        "summary": "Create a single text of a {i18n> invoice type}.",
         "tags": [
-          "InvoiceTypeDraft_texts"
+          "{i18n>InvoiceType}",
+          "InvoiceType_texts"
         ],
         "requestBody": {
-          "description": "New invoice type draft_text",
+          "description": "New text",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceTypeDraft_texts-create"
+                "$ref": "#/components/schemas/CatalogService.InvoiceType_texts-create"
               }
             }
           }
         },
         "responses": {
           "201": {
-            "description": "Created invoice type draft_text",
+            "description": "Created text",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceTypeDraft_texts"
+                  "$ref": "#/components/schemas/CatalogService.InvoiceType_texts"
                 }
               }
             }
@@ -3288,18 +1893,8 @@
         }
       }
     },
-    "/InvoiceTypeDraft_texts(locale='{locale}',invoiceType='{invoiceType}')": {
+    "/InvoiceType('{invoiceType}')/localized": {
       "parameters": [
-        {
-          "description": "key: locale",
-          "in": "path",
-          "name": "locale",
-          "required": true,
-          "schema": {
-            "type": "string",
-            "maxLength": 14
-          }
-        },
         {
           "description": "{i18n>InvoiceType}",
           "in": "path",
@@ -3311,9 +1906,10 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single invoice type draft_text.",
+        "summary": "Retrieve localized of a {i18n> invoice type}.",
         "tags": [
-          "InvoiceTypeDraft_texts"
+          "{i18n>InvoiceType}",
+          "InvoiceType_texts"
         ],
         "parameters": [
           {
@@ -3337,11 +1933,11 @@
         ],
         "responses": {
           "200": {
-            "description": "Retrieved invoice type draft_text",
+            "description": "Retrieved localized",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceTypeDraft_texts"
+                  "$ref": "#/components/schemas/CatalogService.InvoiceType_texts"
                 }
               }
             }
@@ -3350,52 +1946,13 @@
             "$ref": "#/components/responses/error"
           }
         }
-      },
-      "patch": {
-        "summary": "Change a single invoice type draft_text.",
-        "tags": [
-          "InvoiceTypeDraft_texts"
-        ],
-        "requestBody": {
-          "description": "New property values",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceTypeDraft_texts-update"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete a single invoice type draft_text.",
-        "tags": [
-          "InvoiceTypeDraft_texts"
-        ],
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
       }
     },
-    "/InvoiceStatusDraft_texts": {
+    "/InvoiceStatus_texts": {
       "get": {
-        "summary": "Retrieve a list of invoice status draft_texts.",
+        "summary": "Retrieve a list of invoice status_texts.",
         "tags": [
-          "InvoiceStatusDraft_texts"
+          "InvoiceStatus_texts"
         ],
         "parameters": [
           {
@@ -3460,12 +2017,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Retrieved invoice status draft_texts",
+            "description": "Retrieved invoice status_texts",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "title": "Collection of InvoiceStatusDraft_texts",
+                  "title": "Collection of InvoiceStatus_texts",
                   "properties": {
                     "@odata.count": {
                       "$ref": "#/components/schemas/count"
@@ -3473,7 +2030,7 @@
                     "value": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceStatusDraft_texts"
+                        "$ref": "#/components/schemas/CatalogService.InvoiceStatus_texts"
                       }
                     }
                   }
@@ -3487,28 +2044,28 @@
         }
       },
       "post": {
-        "summary": "Create a single invoice status draft_text.",
+        "summary": "Create a single invoice status_text.",
         "tags": [
-          "InvoiceStatusDraft_texts"
+          "InvoiceStatus_texts"
         ],
         "requestBody": {
-          "description": "New invoice status draft_text",
+          "description": "New invoice status_text",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceStatusDraft_texts-create"
+                "$ref": "#/components/schemas/CatalogService.InvoiceStatus_texts-create"
               }
             }
           }
         },
         "responses": {
           "201": {
-            "description": "Created invoice status draft_text",
+            "description": "Created invoice status_text",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceStatusDraft_texts"
+                  "$ref": "#/components/schemas/CatalogService.InvoiceStatus_texts"
                 }
               }
             }
@@ -3519,7 +2076,7 @@
         }
       }
     },
-    "/InvoiceStatusDraft_texts(locale='{locale}',invoiceStatus={invoiceStatus})": {
+    "/InvoiceStatus_texts(locale='{locale}',invoiceStatus={invoiceStatus})": {
       "parameters": [
         {
           "description": "key: locale",
@@ -3543,9 +2100,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single invoice status draft_text.",
+        "summary": "Retrieve a single invoice status_text.",
         "tags": [
-          "InvoiceStatusDraft_texts"
+          "InvoiceStatus_texts"
         ],
         "parameters": [
           {
@@ -3569,11 +2126,11 @@
         ],
         "responses": {
           "200": {
-            "description": "Retrieved invoice status draft_text",
+            "description": "Retrieved invoice status_text",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceStatusDraft_texts"
+                  "$ref": "#/components/schemas/CatalogService.InvoiceStatus_texts"
                 }
               }
             }
@@ -3584,9 +2141,9 @@
         }
       },
       "patch": {
-        "summary": "Change a single invoice status draft_text.",
+        "summary": "Change a single invoice status_text.",
         "tags": [
-          "InvoiceStatusDraft_texts"
+          "InvoiceStatus_texts"
         ],
         "requestBody": {
           "description": "New property values",
@@ -3594,7 +2151,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceStatusDraft_texts-update"
+                "$ref": "#/components/schemas/CatalogService.InvoiceStatus_texts-update"
               }
             }
           }
@@ -3609,9 +2166,240 @@
         }
       },
       "delete": {
-        "summary": "Delete a single invoice status draft_text.",
+        "summary": "Delete a single invoice status_text.",
         "tags": [
-          "InvoiceStatusDraft_texts"
+          "InvoiceStatus_texts"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/InvoiceType_texts": {
+      "get": {
+        "summary": "Retrieve a list of invoice type_texts.",
+        "tags": [
+          "InvoiceType_texts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "locale",
+                  "locale desc",
+                  "invoiceType",
+                  "invoiceType desc",
+                  "txtInvoiceType",
+                  "txtInvoiceType desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "locale",
+                  "invoiceType",
+                  "txtInvoiceType"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved invoice type_texts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Collection of InvoiceType_texts",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/CatalogService.InvoiceType_texts"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a single invoice type_text.",
+        "tags": [
+          "InvoiceType_texts"
+        ],
+        "requestBody": {
+          "description": "New invoice type_text",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.InvoiceType_texts-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created invoice type_text",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.InvoiceType_texts"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/InvoiceType_texts(locale='{locale}',invoiceType='{invoiceType}')": {
+      "parameters": [
+        {
+          "description": "key: locale",
+          "in": "path",
+          "name": "locale",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "maxLength": 14
+          }
+        },
+        {
+          "description": "{i18n>InvoiceType}",
+          "in": "path",
+          "name": "invoiceType",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve a single invoice type_text.",
+        "tags": [
+          "InvoiceType_texts"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "locale",
+                  "invoiceType",
+                  "txtInvoiceType"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved invoice type_text",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.InvoiceType_texts"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Change a single invoice type_text.",
+        "tags": [
+          "InvoiceType_texts"
+        ],
+        "requestBody": {
+          "description": "New property values",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.InvoiceType_texts-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a single invoice type_text.",
+        "tags": [
+          "InvoiceType_texts"
         ],
         "responses": {
           "204": {
@@ -3638,7 +2426,7 @@
               "schema": {
                 "type": "string"
               },
-              "example": "--request-separator\nContent-Type: application/http\nContent-Transfer-Encoding: binary\n\nGET InvoiceDraft HTTP/1.1\nAccept: application/json\n\n\n--request-separator--"
+              "example": "--request-separator\nContent-Type: application/http\nContent-Transfer-Encoding: binary\n\nGET Invoice HTTP/1.1\nAccept: application/json\n\n\n--request-separator--"
             }
           }
         },
@@ -3663,144 +2451,8 @@
   },
   "components": {
     "schemas": {
-      "CatalogServiceDraft.DraftAdministrativeData": {
-        "title": "DraftAdministrativeData",
-        "type": "object",
-        "properties": {
-          "DraftUUID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          },
-          "CreationDateTime": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "CreatedByUser": {
-            "type": "string",
-            "maxLength": 256,
-            "nullable": true
-          },
-          "DraftIsCreatedByMe": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "LastChangeDateTime": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "LastChangedByUser": {
-            "type": "string",
-            "maxLength": 256,
-            "nullable": true
-          },
-          "InProcessByUser": {
-            "type": "string",
-            "maxLength": 256,
-            "nullable": true
-          },
-          "DraftIsProcessedByMe": {
-            "type": "boolean",
-            "nullable": true
-          }
-        }
-      },
-      "CatalogServiceDraft.DraftAdministrativeData-create": {
-        "title": "DraftAdministrativeData (for create)",
-        "type": "object",
-        "properties": {
-          "DraftUUID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          },
-          "CreationDateTime": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "CreatedByUser": {
-            "type": "string",
-            "maxLength": 256,
-            "nullable": true
-          },
-          "DraftIsCreatedByMe": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "LastChangeDateTime": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "LastChangedByUser": {
-            "type": "string",
-            "maxLength": 256,
-            "nullable": true
-          },
-          "InProcessByUser": {
-            "type": "string",
-            "maxLength": 256,
-            "nullable": true
-          },
-          "DraftIsProcessedByMe": {
-            "type": "boolean",
-            "nullable": true
-          }
-        },
-        "required": [
-          "DraftUUID"
-        ]
-      },
-      "CatalogServiceDraft.DraftAdministrativeData-update": {
-        "title": "DraftAdministrativeData (for update)",
-        "type": "object",
-        "properties": {
-          "CreationDateTime": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "CreatedByUser": {
-            "type": "string",
-            "maxLength": 256,
-            "nullable": true
-          },
-          "DraftIsCreatedByMe": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "LastChangeDateTime": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "LastChangedByUser": {
-            "type": "string",
-            "maxLength": 256,
-            "nullable": true
-          },
-          "InProcessByUser": {
-            "type": "string",
-            "maxLength": 256,
-            "nullable": true
-          },
-          "DraftIsProcessedByMe": {
-            "type": "boolean",
-            "nullable": true
-          }
-        }
-      },
-      "CatalogServiceDraft.InvoiceDraft": {
-        "title": "{i18n>Invoice}",
+      "CatalogService.Invoice": {
+        "title": "Fatura",
         "type": "object",
         "properties": {
           "ID": {
@@ -3835,276 +2487,220 @@
           "invoiceNumber": {
             "type": "string",
             "nullable": true,
-            "description": "{i18n>invoiceNumber}"
+            "description": "Nr. Fatura"
           },
           "senderName": {
             "type": "string",
             "nullable": true,
-            "description": "{i18n>senderName}"
+            "description": "Remetente"
           },
           "poNumber": {
             "type": "string",
             "nullable": true,
-            "description": "{i18n>poNumber}"
+            "description": "Nr. Pedido"
           },
           "invoiceType": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceTypeDraft"
+                "$ref": "#/components/schemas/CatalogService.InvoiceType"
               }
             ],
             "nullable": true,
-            "description": "{i18n>invoiceType}"
+            "description": "Tp. Invoice"
           },
           "invoiceType_invoiceType": {
             "type": "string",
             "nullable": true,
-            "description": "{i18n>invoiceType}"
+            "description": "Tp. Invoice"
           },
           "grossAmount": {
             "type": "integer",
             "format": "int32",
             "nullable": true,
-            "description": "{i18n>grossAmount}"
+            "description": "Montante"
           },
           "invoiceDate": {
             "type": "string",
             "format": "date",
             "example": "2017-04-13",
             "nullable": true,
-            "description": "{i18n>invoiceDate}"
+            "description": "Data Fatura"
           },
           "senderAddress": {
             "type": "string",
             "nullable": true,
-            "description": "{i18n>senderAddress}"
+            "description": "End. Remetente"
           },
           "invoiceStatus": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceStatusDraft"
+                "$ref": "#/components/schemas/CatalogService.InvoiceStatus"
               }
             ],
             "nullable": true,
-            "description": "{i18n>invoiceStatus}"
+            "description": "Status"
           },
           "invoiceStatus_invoiceStatus": {
             "type": "integer",
             "format": "int32",
             "nullable": true,
-            "description": "{i18n>invoiceStatus}"
+            "description": "Status"
           },
           "invoiceContent": {
             "type": "string",
             "format": "base64url",
             "nullable": true,
-            "description": "{i18n>invoiceContent}"
+            "description": "Anexo"
           },
           "invoiceContentType": {
             "type": "string",
             "nullable": true,
-            "description": "{i18n>invoiceContentType}"
+            "description": "Tipo Anexo"
           },
           "invoiceItems": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceItemsDraft"
+              "$ref": "#/components/schemas/CatalogService.InvoiceItems"
             },
-            "description": "{i18n>invoiceItems}"
+            "description": "Itens"
           },
           "invoiceItems@odata.count": {
             "$ref": "#/components/schemas/count"
-          },
-          "IsActiveEntity": {
-            "type": "boolean",
-            "default": true
-          },
-          "HasActiveEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "HasDraftEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "DraftAdministrativeData": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CatalogServiceDraft.DraftAdministrativeData"
-              }
-            ],
-            "nullable": true
-          },
-          "SiblingEntity": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceDraft"
-              }
-            ],
-            "nullable": true
           }
         },
-        "description": "{i18n>Invoice}"
+        "description": "Fatura"
       },
-      "CatalogServiceDraft.InvoiceDraft-create": {
-        "title": "{i18n>Invoice} (for create)",
+      "CatalogService.Invoice-create": {
+        "title": "Fatura (for create)",
         "type": "object",
         "properties": {
           "invoiceNumber": {
             "type": "string",
             "nullable": true,
-            "description": "{i18n>invoiceNumber}"
+            "description": "Nr. Fatura"
           },
           "senderName": {
             "type": "string",
             "nullable": true,
-            "description": "{i18n>senderName}"
+            "description": "Remetente"
           },
           "poNumber": {
             "type": "string",
             "nullable": true,
-            "description": "{i18n>poNumber}"
+            "description": "Nr. Pedido"
           },
           "invoiceType_invoiceType": {
             "type": "string",
             "nullable": true,
-            "description": "{i18n>invoiceType}"
+            "description": "Tp. Invoice"
           },
           "grossAmount": {
             "type": "integer",
             "format": "int32",
             "nullable": true,
-            "description": "{i18n>grossAmount}"
+            "description": "Montante"
           },
           "invoiceDate": {
             "type": "string",
             "format": "date",
             "example": "2017-04-13",
             "nullable": true,
-            "description": "{i18n>invoiceDate}"
+            "description": "Data Fatura"
           },
           "senderAddress": {
             "type": "string",
             "nullable": true,
-            "description": "{i18n>senderAddress}"
+            "description": "End. Remetente"
           },
           "invoiceStatus_invoiceStatus": {
             "type": "integer",
             "format": "int32",
             "nullable": true,
-            "description": "{i18n>invoiceStatus}"
+            "description": "Status"
           },
           "invoiceContent": {
             "type": "string",
             "format": "base64url",
             "nullable": true,
-            "description": "{i18n>invoiceContent}"
+            "description": "Anexo"
           },
           "invoiceContentType": {
             "type": "string",
             "nullable": true,
-            "description": "{i18n>invoiceContentType}"
-          },
-          "IsActiveEntity": {
-            "type": "boolean",
-            "default": true
-          },
-          "HasActiveEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "HasDraftEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "DraftAdministrativeData": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CatalogServiceDraft.DraftAdministrativeData-create"
-              }
-            ],
-            "nullable": true
+            "description": "Tipo Anexo"
           }
         },
         "required": [
-          "IsActiveEntity",
           "invoiceNumber",
           "senderName",
-          "poNumber"
+          "poNumber",
+          "invoiceType_invoiceType"
         ],
-        "description": "{i18n>Invoice}"
+        "description": "Fatura"
       },
-      "CatalogServiceDraft.InvoiceDraft-update": {
-        "title": "{i18n>Invoice} (for update)",
+      "CatalogService.Invoice-update": {
+        "title": "Fatura (for update)",
         "type": "object",
         "properties": {
           "invoiceNumber": {
             "type": "string",
             "nullable": true,
-            "description": "{i18n>invoiceNumber}"
+            "description": "Nr. Fatura"
           },
           "senderName": {
             "type": "string",
             "nullable": true,
-            "description": "{i18n>senderName}"
+            "description": "Remetente"
           },
           "poNumber": {
             "type": "string",
             "nullable": true,
-            "description": "{i18n>poNumber}"
+            "description": "Nr. Pedido"
           },
           "invoiceType_invoiceType": {
             "type": "string",
             "nullable": true,
-            "description": "{i18n>invoiceType}"
+            "description": "Tp. Invoice"
           },
           "grossAmount": {
             "type": "integer",
             "format": "int32",
             "nullable": true,
-            "description": "{i18n>grossAmount}"
+            "description": "Montante"
           },
           "invoiceDate": {
             "type": "string",
             "format": "date",
             "example": "2017-04-13",
             "nullable": true,
-            "description": "{i18n>invoiceDate}"
+            "description": "Data Fatura"
           },
           "senderAddress": {
             "type": "string",
             "nullable": true,
-            "description": "{i18n>senderAddress}"
+            "description": "End. Remetente"
           },
           "invoiceStatus_invoiceStatus": {
             "type": "integer",
             "format": "int32",
             "nullable": true,
-            "description": "{i18n>invoiceStatus}"
+            "description": "Status"
           },
           "invoiceContent": {
             "type": "string",
             "format": "base64url",
             "nullable": true,
-            "description": "{i18n>invoiceContent}"
+            "description": "Anexo"
           },
           "invoiceContentType": {
             "type": "string",
             "nullable": true,
-            "description": "{i18n>invoiceContentType}"
-          },
-          "HasActiveEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "HasDraftEntity": {
-            "type": "boolean",
-            "default": false
+            "description": "Tipo Anexo"
           }
         },
-        "description": "{i18n>Invoice}"
+        "description": "Fatura"
       },
-      "CatalogServiceDraft.InvoiceItemsDraft": {
+      "CatalogService.InvoiceItems": {
         "title": "{i18n>InvoiceItems}",
         "type": "object",
         "properties": {
@@ -4141,17 +2737,15 @@
           "invoice": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceDraft"
+                "$ref": "#/components/schemas/CatalogService.Invoice"
               }
             ],
-            "nullable": true,
             "description": "{i18n>invoice}"
           },
           "invoice_ID": {
             "type": "string",
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true,
             "description": "{i18n>invoice}"
           },
           "itemNumber": {
@@ -4163,39 +2757,11 @@
             "type": "string",
             "nullable": true,
             "description": "{i18n>itemDescription}"
-          },
-          "IsActiveEntity": {
-            "type": "boolean",
-            "default": true
-          },
-          "HasActiveEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "HasDraftEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "DraftAdministrativeData": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CatalogServiceDraft.DraftAdministrativeData"
-              }
-            ],
-            "nullable": true
-          },
-          "SiblingEntity": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceItemsDraft"
-              }
-            ],
-            "nullable": true
           }
         },
         "description": "{i18n>InvoiceItems}"
       },
-      "CatalogServiceDraft.InvoiceItemsDraft-create": {
+      "CatalogService.InvoiceItems-create": {
         "title": "{i18n>InvoiceItems} (for create)",
         "type": "object",
         "properties": {
@@ -4203,7 +2769,6 @@
             "type": "string",
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true,
             "description": "{i18n>invoice}"
           },
           "itemNumber": {
@@ -4215,37 +2780,16 @@
             "type": "string",
             "nullable": true,
             "description": "{i18n>itemDescription}"
-          },
-          "IsActiveEntity": {
-            "type": "boolean",
-            "default": true
-          },
-          "HasActiveEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "HasDraftEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "DraftAdministrativeData": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CatalogServiceDraft.DraftAdministrativeData-create"
-              }
-            ],
-            "nullable": true
           }
         },
         "required": [
-          "IsActiveEntity",
           "invoice_ID",
           "itemNumber",
           "itemDescription"
         ],
         "description": "{i18n>InvoiceItems}"
       },
-      "CatalogServiceDraft.InvoiceItemsDraft-update": {
+      "CatalogService.InvoiceItems-update": {
         "title": "{i18n>InvoiceItems} (for update)",
         "type": "object",
         "properties": {
@@ -4253,7 +2797,6 @@
             "type": "string",
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true,
             "description": "{i18n>invoice}"
           },
           "itemNumber": {
@@ -4265,19 +2808,11 @@
             "type": "string",
             "nullable": true,
             "description": "{i18n>itemDescription}"
-          },
-          "HasActiveEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "HasDraftEntity": {
-            "type": "boolean",
-            "default": false
           }
         },
         "description": "{i18n>InvoiceItems}"
       },
-      "CatalogServiceDraft.InvoiceStatusDraft": {
+      "CatalogService.InvoiceStatus": {
         "title": "[object Object]",
         "type": "object",
         "properties": {
@@ -4294,7 +2829,7 @@
           "texts": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceStatusDraft_texts"
+              "$ref": "#/components/schemas/CatalogService.InvoiceStatus_texts"
             }
           },
           "texts@odata.count": {
@@ -4303,7 +2838,7 @@
           "localized": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceStatusDraft_texts"
+                "$ref": "#/components/schemas/CatalogService.InvoiceStatus_texts"
               }
             ],
             "nullable": true
@@ -4313,7 +2848,7 @@
           "$Path": "txtInvoiceStatus"
         }
       },
-      "CatalogServiceDraft.InvoiceStatusDraft-create": {
+      "CatalogService.InvoiceStatus-create": {
         "title": "[object Object] (for create)",
         "type": "object",
         "properties": {
@@ -4336,7 +2871,7 @@
           "$Path": "txtInvoiceStatus"
         }
       },
-      "CatalogServiceDraft.InvoiceStatusDraft-update": {
+      "CatalogService.InvoiceStatus-update": {
         "title": "[object Object] (for update)",
         "type": "object",
         "properties": {
@@ -4350,8 +2885,8 @@
           "$Path": "txtInvoiceStatus"
         }
       },
-      "CatalogServiceDraft.InvoiceStatusDraft_texts": {
-        "title": "InvoiceStatusDraft_texts",
+      "CatalogService.InvoiceStatus_texts": {
+        "title": "InvoiceStatus_texts",
         "type": "object",
         "properties": {
           "locale": {
@@ -4370,8 +2905,8 @@
           }
         }
       },
-      "CatalogServiceDraft.InvoiceStatusDraft_texts-create": {
-        "title": "InvoiceStatusDraft_texts (for create)",
+      "CatalogService.InvoiceStatus_texts-create": {
+        "title": "InvoiceStatus_texts (for create)",
         "type": "object",
         "properties": {
           "locale": {
@@ -4395,8 +2930,8 @@
           "txtInvoiceStatus"
         ]
       },
-      "CatalogServiceDraft.InvoiceStatusDraft_texts-update": {
-        "title": "InvoiceStatusDraft_texts (for update)",
+      "CatalogService.InvoiceStatus_texts-update": {
+        "title": "InvoiceStatus_texts (for update)",
         "type": "object",
         "properties": {
           "txtInvoiceStatus": {
@@ -4406,7 +2941,7 @@
           }
         }
       },
-      "CatalogServiceDraft.InvoiceTypeDraft": {
+      "CatalogService.InvoiceType": {
         "title": "[object Object]",
         "type": "object",
         "properties": {
@@ -4422,7 +2957,7 @@
           "texts": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceTypeDraft_texts"
+              "$ref": "#/components/schemas/CatalogService.InvoiceType_texts"
             }
           },
           "texts@odata.count": {
@@ -4431,7 +2966,7 @@
           "localized": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/CatalogServiceDraft.InvoiceTypeDraft_texts"
+                "$ref": "#/components/schemas/CatalogService.InvoiceType_texts"
               }
             ],
             "nullable": true
@@ -4441,7 +2976,7 @@
           "$Path": "txtInvoiceType"
         }
       },
-      "CatalogServiceDraft.InvoiceTypeDraft-create": {
+      "CatalogService.InvoiceType-create": {
         "title": "[object Object] (for create)",
         "type": "object",
         "properties": {
@@ -4463,7 +2998,7 @@
           "$Path": "txtInvoiceType"
         }
       },
-      "CatalogServiceDraft.InvoiceTypeDraft-update": {
+      "CatalogService.InvoiceType-update": {
         "title": "[object Object] (for update)",
         "type": "object",
         "properties": {
@@ -4477,8 +3012,8 @@
           "$Path": "txtInvoiceType"
         }
       },
-      "CatalogServiceDraft.InvoiceTypeDraft_texts": {
-        "title": "InvoiceTypeDraft_texts",
+      "CatalogService.InvoiceType_texts": {
+        "title": "InvoiceType_texts",
         "type": "object",
         "properties": {
           "locale": {
@@ -4496,8 +3031,8 @@
           }
         }
       },
-      "CatalogServiceDraft.InvoiceTypeDraft_texts-create": {
-        "title": "InvoiceTypeDraft_texts (for create)",
+      "CatalogService.InvoiceType_texts-create": {
+        "title": "InvoiceType_texts (for create)",
         "type": "object",
         "properties": {
           "locale": {
@@ -4520,8 +3055,8 @@
           "txtInvoiceType"
         ]
       },
-      "CatalogServiceDraft.InvoiceTypeDraft_texts-update": {
-        "title": "InvoiceTypeDraft_texts (for update)",
+      "CatalogService.InvoiceType_texts-update": {
+        "title": "InvoiceType_texts (for update)",
         "type": "object",
         "properties": {
           "txtInvoiceType": {

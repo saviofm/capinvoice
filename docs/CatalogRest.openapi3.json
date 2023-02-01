@@ -2574,35 +2574,6 @@
         "title": "Fatura (for create)",
         "type": "object",
         "properties": {
-          "ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "createdBy": {
-            "type": "string",
-            "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
-          },
-          "modifiedAt": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "modifiedBy": {
-            "type": "string",
-            "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
-          },
           "invoiceNumber": {
             "type": "string",
             "nullable": true,
@@ -2617,15 +2588,6 @@
             "type": "string",
             "nullable": true,
             "description": "Nr. Pedido"
-          },
-          "invoiceType": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CatalogRest.InvoiceType-create"
-              }
-            ],
-            "nullable": true,
-            "description": "Tp. Invoice"
           },
           "invoiceType_invoiceType": {
             "type": "string",
@@ -2650,15 +2612,6 @@
             "nullable": true,
             "description": "End. Remetente"
           },
-          "invoiceStatus": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CatalogRest.InvoiceStatus-create"
-              }
-            ],
-            "nullable": true,
-            "description": "Status"
-          },
           "invoiceStatus_invoiceStatus": {
             "type": "integer",
             "format": "int32",
@@ -2675,17 +2628,9 @@
             "type": "string",
             "nullable": true,
             "description": "Tipo Anexo"
-          },
-          "invoiceItems": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CatalogRest.InvoiceItems-create"
-            },
-            "description": "Itens"
           }
         },
         "required": [
-          "ID",
           "invoiceNumber",
           "senderName",
           "poNumber",
@@ -2697,18 +2642,6 @@
         "title": "Fatura (for update)",
         "type": "object",
         "properties": {
-          "modifiedAt": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "modifiedBy": {
-            "type": "string",
-            "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
-          },
           "invoiceNumber": {
             "type": "string",
             "nullable": true,
@@ -2832,44 +2765,6 @@
         "title": "{i18n>InvoiceItems} (for create)",
         "type": "object",
         "properties": {
-          "ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "description": "ID"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "createdBy": {
-            "type": "string",
-            "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
-          },
-          "modifiedAt": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "modifiedBy": {
-            "type": "string",
-            "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
-          },
-          "invoice": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CatalogRest.Invoice-create"
-              }
-            ],
-            "description": "{i18n>invoice}"
-          },
           "invoice_ID": {
             "type": "string",
             "format": "uuid",
@@ -2888,7 +2783,6 @@
           }
         },
         "required": [
-          "ID",
           "invoice_ID",
           "itemNumber",
           "itemDescription"
@@ -2899,18 +2793,6 @@
         "title": "{i18n>InvoiceItems} (for update)",
         "type": "object",
         "properties": {
-          "modifiedAt": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "modifiedBy": {
-            "type": "string",
-            "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
-          },
           "invoice_ID": {
             "type": "string",
             "format": "uuid",
@@ -2979,20 +2861,6 @@
             "type": "string",
             "nullable": true,
             "description": "{i18n>txtInvoiceStatus}"
-          },
-          "texts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CatalogRest.InvoiceStatus_texts-create"
-            }
-          },
-          "localized": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CatalogRest.InvoiceStatus_texts-create"
-              }
-            ],
-            "nullable": true
           }
         },
         "required": [
@@ -3120,20 +2988,6 @@
             "type": "string",
             "nullable": true,
             "description": "{i18n>txtInvoiceType}"
-          },
-          "texts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CatalogRest.InvoiceType_texts-create"
-            }
-          },
-          "localized": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CatalogRest.InvoiceType_texts-create"
-              }
-            ],
-            "nullable": true
           }
         },
         "required": [
