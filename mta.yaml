@@ -118,8 +118,19 @@ modules:
   parameters:
     buildpack: nodejs_buildpack
 
-
-
+# ------------------------WORKFLOW ---------------------------
+- name: wfentradafatura
+# ------------------------------------------------------------
+  type: com.sap.application.content
+  path: wfentradafatura
+  requires:
+  - name: sap_processautomation
+    parameters:
+      content-target: true
+      service-key:
+        config:
+          deployUsageScenario: workflow
+        name: spa-workflow-service-key
 
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------
@@ -209,3 +220,7 @@ resources:
     service-name: capinvoice-xsuaa-service
     service-plan: application      
 
+# ---------------------------- SPA  ------------------------------  
+- name: sap_processautomation
+# ----------------------------------------------------------------
+  type: org.cloudfoundry.existing-service

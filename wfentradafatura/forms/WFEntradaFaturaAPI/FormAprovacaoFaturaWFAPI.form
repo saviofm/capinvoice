@@ -1,0 +1,10 @@
+{
+    "id": "formaprovacaofaturawfapi",
+    "schemaVersion": "1.1.0",
+    "name": "FormAprovacaoFaturaWFAPI",
+    "revision": "1.0",
+    "type": "task",
+    "readOnly": false,
+    "content": [],
+    "decisions": []
+}
