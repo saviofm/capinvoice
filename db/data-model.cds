@@ -19,7 +19,7 @@ entity Invoice: cuid, managed {
   senderName: String;
   poNumber: String;
   invoiceType: Association to one InvoiceType;
-  grossAmount: Integer;
+  grossAmount: Decimal(12,3);
   invoiceDate: Date ;
   senderAddress: String;
   invoiceStatus: Association to one InvoiceStatus;
@@ -81,7 +81,9 @@ annotate Invoice with @(
                 ![@UI.TextArrangement] : #TextOnly
             },
           //ValueListWithFixedValues : false,
+          ValueListWithFixedValues : false,
           ValueList                : {
+                Label: '{i18n>invoiceType}',     
                 CollectionPath : 'InvoiceType',
                 SearchSupported: true,
                 Parameters     : [
@@ -123,8 +125,9 @@ annotate Invoice with @(
                 $value                 : invoiceStatus.txtInvoiceStatus,
                 ![@UI.TextArrangement] : #TextOnly
             },
-          //ValueListWithFixedValues : false,
+          ValueListWithFixedValues : false,
           ValueList                : {
+              Label: '{i18n>invoiceStatus}',   
               CollectionPath : 'InvoiceStatus',
               SearchSupported: true,
               Parameters     : [
