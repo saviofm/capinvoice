@@ -175,7 +175,7 @@ resources:
             HTML5.Timeout: 300000
             sap.processautomation.enabled: true
             AppgyverEnabled: true
-            Name: capinvoice_catalog
+            Name: capinvoice_catalog_rest
             ProxyType: Internet
             Type: HTTP
             URL: ~{srv-api/srv-url}/catalog-rest                          
