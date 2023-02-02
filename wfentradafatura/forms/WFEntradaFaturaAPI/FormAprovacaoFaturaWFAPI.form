@@ -5,6 +5,112 @@
     "revision": "1.0",
     "type": "task",
     "readOnly": false,
-    "content": [],
-    "decisions": []
+    "content": [
+        {
+            "id": "dados_fatura",
+            "type": "section",
+            "title": "Dados Fatura",
+            "content": [
+                {
+                    "id": "nr_fatura",
+                    "type": "string",
+                    "label": "Nr. Fatura",
+                    "readOnly": true,
+                    "value": "${context.Fatura.invoiceNumber}",
+                    "constraints": {
+                        "required": false
+                    }
+                },
+                {
+                    "id": "fornecedor",
+                    "type": "string",
+                    "label": "Fornecedor",
+                    "readOnly": true,
+                    "value": "${context.Fatura.senderName}",
+                    "constraints": {
+                        "required": false
+                    }
+                },
+                {
+                    "id": "nr_pedido",
+                    "type": "string",
+                    "label": "Nr. Pedido",
+                    "readOnly": true,
+                    "value": "${context.Fatura.poNumber}",
+                    "constraints": {
+                        "required": false
+                    }
+                },
+                {
+                    "id": "dt_fatura",
+                    "type": "string",
+                    "label": "Dt. Fatura",
+                    "readOnly": true,
+                    "value": "${context.Fatura.invoiceDate}",
+                    "constraints": {
+                        "required": false
+                    }
+                },
+                {
+                    "id": "tp_fatura",
+                    "type": "string",
+                    "label": "Tp. Fatura",
+                    "readOnly": true,
+                    "value": "${context.Fatura.invoiceType}",
+                    "constraints": {
+                        "required": false
+                    }
+                }
+            ]
+        },
+        {
+            "id": "itens_fatura",
+            "type": "section",
+            "title": "Itens Fatura",
+            "content": [
+                {
+                    "id": "itens",
+                    "type": "collection",
+                    "title": "Itens",
+                    "addEnabled": false,
+                    "deleteEnabled": false,
+                    "value": "${context.Fatura.invoiceItems}",
+                    "content": [
+                        {
+                            "id": "nr_item",
+                            "type": "string",
+                            "label": "Nr. Item",
+                            "readOnly": true,
+                            "value": "${item.itemNumber}",
+                            "constraints": {
+                                "required": false
+                            }
+                        },
+                        {
+                            "id": "descri_o",
+                            "type": "string",
+                            "label": "Descrição",
+                            "readOnly": true,
+                            "value": "${item.itemDescription}",
+                            "constraints": {
+                                "required": false
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "decisions": [
+        {
+            "id": "aprovar",
+            "text": "Aprovar",
+            "decisionType": "positive"
+        },
+        {
+            "id": "reprovar",
+            "text": "Reprovar",
+            "decisionType": "negative"
+        }
+    ]
 }
