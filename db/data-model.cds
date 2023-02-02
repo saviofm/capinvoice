@@ -163,7 +163,7 @@ annotate Invoice with @(
 //---------------------------------------------------------//
 //Entity
 entity InvoiceItems : cuid , managed {
-  invoice : Association to one Invoice not null;
+  invoice : Association to Invoice;
   itemNumber: String;
   itemDescription: String;
 };
