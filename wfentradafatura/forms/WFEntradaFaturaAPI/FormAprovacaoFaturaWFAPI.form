@@ -74,7 +74,7 @@
                     "title": "Itens",
                     "addEnabled": false,
                     "deleteEnabled": false,
-                    "value": "${context.Fatura.invoiceItems}",
+                    "value": "${context.itemsFatura}",
                     "content": [
                         {
                             "id": "nr_item",

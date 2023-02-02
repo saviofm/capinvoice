@@ -25,7 +25,7 @@ var lastUserTask1 = $.usertasks.usertask1.last;
 
 // create new node 'Aprovacao'
 var Aprovacao = {
-		Aprovacao: lastUserTask1
+		Aprovacao: lastUserTask1.decision
 };
 $.context = Aprovacao;
 
