@@ -2527,6 +2527,8 @@
               }
             ],
             "example": 0,
+            "x-sap-precision": 13,
+            "x-sap-scale": 2,
             "nullable": true,
             "description": "Montante"
           },
@@ -2619,6 +2621,8 @@
               }
             ],
             "example": 0,
+            "x-sap-precision": 13,
+            "x-sap-scale": 2,
             "nullable": true,
             "description": "Montante"
           },
@@ -2698,6 +2702,8 @@
               }
             ],
             "example": 0,
+            "x-sap-precision": 13,
+            "x-sap-scale": 2,
             "nullable": true,
             "description": "Montante"
           },
