@@ -174,6 +174,7 @@ resources:
             HTML5.ForwardAuthToken: true
             HTML5.Timeout: 300000
             sap.processautomation.enabled: true
+            sap.applicationdevelopment.actions.enabled: true
             AppgyverEnabled: true
             Name: capinvoice_catalog
             ProxyType: Internet
@@ -185,6 +186,7 @@ resources:
             HTML5.ForwardAuthToken: true
             HTML5.Timeout: 300000
             sap.processautomation.enabled: true
+            sap.applicationdevelopment.actions.enabled: true
             AppgyverEnabled: true
             Name: capinvoice_catalog_rest
             ProxyType: Internet
