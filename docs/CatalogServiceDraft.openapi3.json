@@ -3862,8 +3862,19 @@
             "description": "{i18n>invoiceType}"
           },
           "grossAmount": {
-            "type": "integer",
-            "format": "int32",
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal",
+                "multipleOf": 0.01,
+                "maximum": 99999999999.99,
+                "minimum": -99999999999.99
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
             "nullable": true,
             "description": "{i18n>grossAmount}"
           },
@@ -3971,8 +3982,19 @@
             "description": "{i18n>invoiceType}"
           },
           "grossAmount": {
-            "type": "integer",
-            "format": "int32",
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal",
+                "multipleOf": 0.01,
+                "maximum": 99999999999.99,
+                "minimum": -99999999999.99
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
             "nullable": true,
             "description": "{i18n>grossAmount}"
           },
@@ -4059,8 +4081,19 @@
             "description": "{i18n>invoiceType}"
           },
           "grossAmount": {
-            "type": "integer",
-            "format": "int32",
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal",
+                "multipleOf": 0.01,
+                "maximum": 99999999999.99,
+                "minimum": -99999999999.99
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
             "nullable": true,
             "description": "{i18n>grossAmount}"
           },
@@ -4239,7 +4272,6 @@
         },
         "required": [
           "IsActiveEntity",
-          "invoice_ID",
           "itemNumber",
           "itemDescription"
         ],

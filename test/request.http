@@ -11,22 +11,50 @@
 
 
 
-### Function check dates
-GET {{server}}/v2/catalog/checkDate?desiredDate='2022-07-06'
+
+
+
+### Read Invoice
+GET {{server}}/catalog/Invoice?$expand=invoiceItems
 Accept: application/json
 Content-Type: application/json
 {{basic}}
 
 
-
-
-
-### Read Schedule
-GET {{server}}/catalog/ScheduleCreate
+### Read Invoice Items
+GET {{server}}/catalog/InvoiceItems
 Accept: application/json
 Content-Type: application/json
 {{basic}}
 
+
+### Post Invoice
+POST {{server}}/catalog/Invoice
+Accept: application/json
+Content-Type: application/json
+{{basic}}
+
+
+ {
+      "createdAt": "2023-02-02T21:37:39.772Z",
+      "createdBy": "savio.marques@sap.com",
+      "modifiedAt": "2023-02-02T21:38:58.612Z",
+      "modifiedBy": "savio.marques@sap.com",
+      "invoiceNumber": "49494",
+      "senderName": "ABC",
+      "poNumber": "po30304",
+      "invoiceType_invoiceType": "MAT",
+      "grossAmount": "3000",
+      "invoiceDate": "2023-02-02",
+      "senderAddress": "Av. Amélia Latorre, 1 T14 AP21",
+      "invoiceStatus_invoiceStatus": 1,
+      "invoiceItems": [
+        {
+          "itemNumber": "1",
+          "itemDescription": "teste"
+        }
+      ]
+  }
 
 
 ### Read Binary

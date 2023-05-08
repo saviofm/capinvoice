@@ -19,7 +19,7 @@ entity Invoice: cuid, managed {
   senderName: String;
   poNumber: String;
   invoiceType: Association to one InvoiceType;
-  grossAmount: Decimal(12,3);
+  grossAmount: Decimal(13,2);
   invoiceDate: Date ;
   senderAddress: String;
   invoiceStatus: Association to one InvoiceStatus;
@@ -198,7 +198,6 @@ annotate InvoiceItems with @(
       title       : '{i18n>invoice}',
       description : '{i18n>invoice}',
       Common      : {
-          FieldControl             : #Mandatory,
           Text      : {
                 $value                 : invoice.invoiceNumber,
                 ![@UI.TextArrangement] : #TextOnly

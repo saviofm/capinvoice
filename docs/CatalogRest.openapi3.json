@@ -2514,8 +2514,19 @@
             "description": "Tp. Invoice"
           },
           "grossAmount": {
-            "type": "integer",
-            "format": "int32",
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal",
+                "multipleOf": 0.01,
+                "maximum": 99999999999.99,
+                "minimum": -99999999999.99
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
             "nullable": true,
             "description": "Montante"
           },
@@ -2595,8 +2606,19 @@
             "description": "Tp. Invoice"
           },
           "grossAmount": {
-            "type": "integer",
-            "format": "int32",
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal",
+                "multipleOf": 0.01,
+                "maximum": 99999999999.99,
+                "minimum": -99999999999.99
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
             "nullable": true,
             "description": "Montante"
           },
@@ -2663,8 +2685,19 @@
             "description": "Tp. Invoice"
           },
           "grossAmount": {
-            "type": "integer",
-            "format": "int32",
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal",
+                "multipleOf": 0.01,
+                "maximum": 99999999999.99,
+                "minimum": -99999999999.99
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
             "nullable": true,
             "description": "Montante"
           },
@@ -2740,12 +2773,14 @@
                 "$ref": "#/components/schemas/CatalogRest.Invoice"
               }
             ],
+            "nullable": true,
             "description": "{i18n>invoice}"
           },
           "invoice_ID": {
             "type": "string",
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true,
             "description": "{i18n>invoice}"
           },
           "itemNumber": {
@@ -2769,6 +2804,7 @@
             "type": "string",
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true,
             "description": "{i18n>invoice}"
           },
           "itemNumber": {
@@ -2783,7 +2819,6 @@
           }
         },
         "required": [
-          "invoice_ID",
           "itemNumber",
           "itemDescription"
         ],
@@ -2797,6 +2832,7 @@
             "type": "string",
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true,
             "description": "{i18n>invoice}"
           },
           "itemNumber": {
